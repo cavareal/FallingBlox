@@ -41,6 +41,7 @@ public class VuePuitsAffichageTest {
 		// Méthode avec setVuePiece();
 		//VuePiece vuepiece = new VuePiece(puits.getPieceSuivante(),20);
 		//vuePuits.setVuePiece(vuepiece);
+		//UsineDePiece.setMode(UsineDePiece.ALEATOIRE_PIECE);
 		
 		//Méthode avec PropertyChange
 		PropertyChangeEvent evt = new PropertyChangeEvent(vuePuits, vuePuits.getPuits().getPieceSuivante().getClass().getSimpleName(), 

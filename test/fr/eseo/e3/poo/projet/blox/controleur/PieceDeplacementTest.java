@@ -1,8 +1,5 @@
 package fr.eseo.e3.poo.projet.blox.controleur;
 
-
-import java.awt.event.MouseEvent;
-
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 
@@ -33,15 +30,6 @@ public class PieceDeplacementTest {
 		puits.getPieceActuelle().setPosition(5, 5);
 		System.out.println(puits.getPieceActuelle());
 		System.out.println(puits.getPieceSuivante());
-		
-//		PieceDeplacement pD = new PieceDeplacement(vuePuits);
-//		
-//		vuePuits.addMouseMotionListener(pD);
-//		vuePuits.addMouseListener(pD);
-//		vuePuits.addMouseWheelListener(pD);
-		
-		
-		//pD.mouseMoved());
         
 		frame.getContentPane().add(vuePuits);
 		frame.pack();

@@ -111,7 +111,8 @@ public class VuePuits extends JPanel implements PropertyChangeListener{
 	public void propertyChange(PropertyChangeEvent event) {
 
 		if (event.getPropertyName().equals(Puits.MODIFICATION_PIECE_ACTUELLE)) {
-            setVuePiece(new VuePiece((Piece) event.getNewValue(), taille));
+			
+			setVuePiece(new VuePiece((Piece) event.getNewValue(), taille));
 			//setVuePiece(this.vuePiece);
             this.repaint();
         } 

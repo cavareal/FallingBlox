@@ -16,11 +16,13 @@ public class Puits {
 	private Piece pieceActuelle;
 	private Piece pieceSuivante;
 	private PropertyChangeSupport pcs;
+	private Tas tas;
 	
 	public Puits(){
 		this.largeur = LARGEUR_PAR_DEFAUT;
 		this.profondeur = PROFONDEUR_PAR_DEFAUT;
 		pcs = new PropertyChangeSupport(this);
+		this.tas = new Tas(this);
 	}
 	
 	public Puits(int largeur, int profondeur) {
@@ -33,6 +35,19 @@ public class Puits {
 		this.largeur = largeur;
 		this.profondeur = profondeur;
 		pcs = new PropertyChangeSupport(this);
+		this.tas = new Tas(this);
+	}
+	
+	public Puits(int largeur, int profondeur, int nbElements, int nbLignes) {
+		if (largeur < 5 || largeur > 15) {
+            throw new IllegalArgumentException("La largeur doit être comprise entre 5 et 15.");
+        }
+        if (profondeur < 15 || profondeur > 25) {
+            throw new IllegalArgumentException("La profondeur doit être comprise entre 15 et 25.");
+        }
+        this.largeur = largeur;
+		this.profondeur = profondeur;
+		this.tas = new Tas(this, nbElements, nbLignes);
 	}
 	
 	public Piece getPieceActuelle() {
@@ -56,11 +71,13 @@ public class Puits {
 			Piece ancien  = pieceActuelle;
 			pieceActuelle = pieceSuivante;
 			pieceActuelle.setPosition(largeur/2, -4);
-
+			//pieceActuelle.setPuits(this);
+			
 			pcs.firePropertyChange(MODIFICATION_PIECE_ACTUELLE, ancien,pieceActuelle);
 		}
 		Piece ancien = this.pieceSuivante;
-		pieceSuivante = piece;		
+		pieceSuivante = piece;	
+		pieceSuivante.setPuits(this);
 		pcs.firePropertyChange(MODIFICATION_PIECE_SUIVANTE,ancien,pieceSuivante );
 	}
 	
@@ -76,6 +93,10 @@ public class Puits {
             throw new IllegalArgumentException("La largeur doit être comprise entre 5 et 15.");
         }
 		this.largeur = largeur;
+	}
+	
+	public Tas getTas() {
+		return this.tas;
 	}
 	
 	public String toString() {

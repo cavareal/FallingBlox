@@ -7,6 +7,7 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import fr.eseo.e3.poo.projet.blox.modele.BloxException;
 import fr.eseo.e3.poo.projet.blox.modele.Coordonnees;
 import fr.eseo.e3.poo.projet.blox.modele.Couleur;
 import fr.eseo.e3.poo.projet.blox.modele.Element;
@@ -61,7 +62,15 @@ public class IPieceTest {
 		list.add(new Element(1, 0));
 		list.add(new Element(1, -1));
 		
-		ip.deplacerDe(1, 0);
+		try {
+			ip.deplacerDe(1, 0);
+		} catch (IllegalArgumentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (BloxException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		List<Element> listFinale = new ArrayList<>();
 		listFinale.add(new Element(2, 1));

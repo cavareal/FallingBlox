@@ -3,6 +3,7 @@ package fr.eseo.e3.poo.projet.blox.modele.pieces;
 import java.util.ArrayList;
 import java.util.List;
 
+import fr.eseo.e3.poo.projet.blox.modele.BloxException;
 import fr.eseo.e3.poo.projet.blox.modele.Coordonnees;
 import fr.eseo.e3.poo.projet.blox.modele.Couleur;
 import fr.eseo.e3.poo.projet.blox.modele.Element;
@@ -24,20 +25,8 @@ public abstract class Piece {
 		return this.elements;
 	}
 	
-	/*
-	public void setPosition(int abscisse, int ordonnee) {
-        int decalageX = abscisse - this.elements.get(0).getCoordonnees().getAbscisse();
-        int decalageY = ordonnee - this.elements.get(0).getCoordonnees().getOrdonnee();
-        for (Element element : elements) {
-            int newAbs = element.getCoordonnees().getAbscisse() + decalageX;
-            int newOrd = element.getCoordonnees().getOrdonnee() + decalageY;
-            element.setCoordonnees(new Coordonnees(newAbs, newOrd));
-        }
-    }*/
 	
-	
-	
-	public void setPosition(int abscisse, int ordonnee) {
+	public void setPosition(int abscisse, int ordonnee){
 		setElements( new Coordonnees(abscisse, ordonnee), elements.get(0).getCouleur());
 	}
 	
@@ -53,14 +42,26 @@ public abstract class Piece {
 		return elements.get(0).getCoordonnees();
 	}
 	
-	public void deplacerDe(int x, int y) throws IllegalArgumentException{
-		if (y < 0 || x>1 || y>1) {
+	public void deplacerDe(int x, int y) throws IllegalArgumentException, BloxException{
+		if (y < 0 || Math.abs(x)>1  || y>1) {
             throw new IllegalArgumentException("Le déplacement doit horizontal avec un y>0 et une seule case");
         }
-		else {
-			setPosition(elements.get(0).getCoordonnees().getAbscisse()+x,
-					elements.get(0).getCoordonnees().getOrdonnee() + y );
+		if(puits != null) {
+			for(Element el : this.elements) {
+				int newX =  el.getCoordonnees().getAbscisse() + x;
+				int newY = el.getCoordonnees().getOrdonnee() + y;
+				
+				if(sortiePuits(newX)) {
+					 throw new BloxException("Sortie du Puits détectée !", BloxException.BLOX_SORTIE_PUITS);
+				}
+			}	
+			/*
+			if(collision(x,y) ) {
+				
+			}*/
 		}
+		setPosition(elements.get(0).getCoordonnees().getAbscisse()+x,
+				elements.get(0).getCoordonnees().getOrdonnee() + y );
 	}
 	
 	public void tourner(boolean sensHoraire) {
@@ -79,6 +80,24 @@ public abstract class Piece {
 	                elements.get(i).setCoordonnees(new Coordonnees((int)newX,(int)newY));
 	            }
 	        }
+	}
+	
+	private boolean collision(int newX, int newY) {
+		boolean bool = false;	
+		if(newY >= 0) {
+			if(newY >= puits.getProfondeur()) {
+				bool = true;
+			}
+		}
+		return bool;
+	}
+	
+	private boolean sortiePuits(int newX) {
+		boolean bool = false;
+			if (newX < 0 || newX >= puits.getLargeur()) {
+				bool = true;
+			}
+		return bool;
 	}
 	
 	

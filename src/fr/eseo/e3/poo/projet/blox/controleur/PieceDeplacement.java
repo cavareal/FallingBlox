@@ -7,6 +7,7 @@ import java.awt.event.MouseMotionListener;
 import java.awt.event.MouseWheelEvent;
 import java.awt.event.MouseWheelListener;
 
+import fr.eseo.e3.poo.projet.blox.modele.BloxException;
 import fr.eseo.e3.poo.projet.blox.modele.Puits;
 import fr.eseo.e3.poo.projet.blox.vue.VuePuits;
 
@@ -38,7 +39,12 @@ public class PieceDeplacement extends MouseAdapter implements MouseMotionListene
 				else if (newNumC > numColonne) {
 					try {
 						if(puits.getPieceActuelle() !=null) {
-							puits.getPieceActuelle().deplacerDe(1, 0);
+							try {
+								puits.getPieceActuelle().deplacerDe(1, 0);
+							} catch (BloxException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
 						}
 					}catch (IllegalArgumentException exception) {
 						// Ne rien faire si le déplacement lève une exception
@@ -46,7 +52,12 @@ public class PieceDeplacement extends MouseAdapter implements MouseMotionListene
 				}else if (newNumC < numColonne) {
 					try {
 						if(puits.getPieceActuelle() != null) {
-							puits.getPieceActuelle().deplacerDe(-1, 0);
+							try {
+								puits.getPieceActuelle().deplacerDe(-1, 0);
+							} catch (BloxException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
 						}
 					}catch (IllegalArgumentException exception) {
 						// Ne rien faire si le déplacement lève une exception
@@ -85,7 +96,12 @@ public class PieceDeplacement extends MouseAdapter implements MouseMotionListene
 	public void mouseWheelMoved(MouseWheelEvent event) {
 		if(puits.getPieceActuelle() != null && event.getWheelRotation() > 0) {
 			try {
-				puits.getPieceActuelle().deplacerDe(0, 1);
+				try {
+					puits.getPieceActuelle().deplacerDe(0, 1);
+				} catch (BloxException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			} catch (IllegalArgumentException exception) {
 				// Ne rien faire si le déplacement lève une exception
 			}

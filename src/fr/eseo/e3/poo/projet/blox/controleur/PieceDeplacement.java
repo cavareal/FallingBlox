@@ -30,6 +30,7 @@ public class PieceDeplacement extends MouseAdapter implements MouseMotionListene
 				numColonne = (int) Math.floor(event.getX()/vuePuits.getTaille());
 				bEvt = false;
 			}else {
+				
 				newNumC = (int) Math.floor(event.getX()/vuePuits.getTaille()); 
 				if(newNumC == -1) {
 					this.numColonne = newNumC;

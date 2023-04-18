@@ -64,23 +64,19 @@ public abstract class Piece {
 	}
 	
 	public void tourner(boolean sensHoraire) {
-		
-		double angle = (sensHoraire)? Math.PI/2 : -Math.PI/2;
-		
+				
 		// ETAPE 1 : translation de l'élément de ref vers l'origine : 
 		Coordonnees coor = this.getPosition(); 
-		this.setPosition(0, 0);
 		
-		//ETAPE 2 :  rotation des éléments autour de l'origine
+		//ETAPE 2 et 3 :  rotation des éléments autour de l'origine + translation
 		 for (int i = 0; i<elements.size(); i++) {
 	            if (elements != elements.get(0)) {
-	                double x = elements.get(i).getCoordonnees().getAbscisse();
-	                double y = elements.get(i).getCoordonnees().getOrdonnee();
-	                double newX = x * Math.cos(angle) - y * Math.sin(angle);
-	                double newY = x * Math.sin(angle) + y * Math.cos(angle);
+	            
+	                int x = elements.get(i).getCoordonnees().getAbscisse();
+	                int y = elements.get(i).getCoordonnees().getOrdonnee();
+	            	int newX = (y - coor.getOrdonnee()) * (sensHoraire ? -1 : 1) + coor.getAbscisse();
+	            	int newY = (x - coor.getAbscisse()) * (sensHoraire ? 1 : -1) + coor.getOrdonnee();
 	                elements.get(i).setCoordonnees(new Coordonnees((int)newX,(int)newY));
-	              //ETAPE 3 : on retranslate vers la position d'origine
-	                elements.get(i).deplacerDe(coor.getAbscisse(), coor.getOrdonnee());
 	            }
 	        }
 	}

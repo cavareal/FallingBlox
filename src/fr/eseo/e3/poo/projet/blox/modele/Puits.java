@@ -53,12 +53,15 @@ public class Puits {
 	
 	public void setPieceSuivante(Piece piece) {
 		if (pieceSuivante != null) {
-			pcs.firePropertyChange(MODIFICATION_PIECE_ACTUELLE, pieceActuelle, pieceSuivante);
+			Piece ancien  = pieceActuelle;
 			pieceActuelle = pieceSuivante;
 			pieceActuelle.setPosition(largeur/2, -4);
+
+			pcs.firePropertyChange(MODIFICATION_PIECE_ACTUELLE, ancien,pieceActuelle);
 		}
-		pcs.firePropertyChange(MODIFICATION_PIECE_SUIVANTE,pieceSuivante, piece );
+		Piece ancien = this.pieceSuivante;
 		pieceSuivante = piece;		
+		pcs.firePropertyChange(MODIFICATION_PIECE_SUIVANTE,ancien,pieceSuivante );
 	}
 	
 	public void setProfondeur(int profondeur) {

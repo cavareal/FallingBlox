@@ -10,18 +10,20 @@ import java.beans.PropertyChangeListener;
 import javax.swing.JPanel;
 
 import fr.eseo.e3.poo.projet.blox.controleur.PieceDeplacement;
+import fr.eseo.e3.poo.projet.blox.controleur.PieceRotation;
 import fr.eseo.e3.poo.projet.blox.modele.Puits;
 import fr.eseo.e3.poo.projet.blox.modele.pieces.Piece;
 
 public class VuePuits extends JPanel implements PropertyChangeListener{
 	
 	private static final long serialVersionUID = 1L;
-	public static final int TAILLE_PAR_DEFAUT = 20;
+	public static final int TAILLE_PAR_DEFAUT = 15; //AVANT ON AVAIT 20 => CHANGEMENT POUR LE TEST 345
 	
 	private Puits puits;
 	private int taille;
 	private VuePiece vuePiece;
 	private PieceDeplacement pieceDeplacement;
+	private PieceRotation pieceRotation;
 
 	public VuePuits(Puits puits){
 		this.puits = puits;
@@ -31,8 +33,10 @@ public class VuePuits extends JPanel implements PropertyChangeListener{
 		setBackground(Color.WHITE);
 		puits.addPropertyChangeListener(this);
 		this.pieceDeplacement = new PieceDeplacement(this);
+		this.pieceRotation = new PieceRotation(this);
 		this.addMouseMotionListener(pieceDeplacement);
 		this.addMouseListener(pieceDeplacement);
+		this.addMouseListener(pieceRotation);
 		this.addMouseWheelListener(pieceDeplacement);
 	}
 	
@@ -44,9 +48,11 @@ public class VuePuits extends JPanel implements PropertyChangeListener{
 		setBackground(Color.WHITE);
 		puits.addPropertyChangeListener(this);
 		this.pieceDeplacement = new PieceDeplacement(this);
+		this.pieceRotation = new PieceRotation(this);
 		this.addMouseMotionListener(pieceDeplacement);
 		this.addMouseListener(pieceDeplacement);
 		this.addMouseWheelListener(pieceDeplacement);
+		this.addMouseListener(pieceRotation);
 	}
 
 	public Puits getPuits() {
@@ -108,11 +114,7 @@ public class VuePuits extends JPanel implements PropertyChangeListener{
             setVuePiece(new VuePiece((Piece) event.getNewValue(), taille));
 			//setVuePiece(this.vuePiece);
             this.repaint();
-        } else if(event.getPropertyName().equals(Puits.MODIFICATION_PIECE_SUIVANTE)) {
-            setVuePiece(new VuePiece((Piece)event.getNewValue(), taille));
-        	//setVuePiece(this.vuePiece);
-        	this.repaint();
-        }
+        } 
 		
 	}
 	

@@ -129,9 +129,25 @@ public class Puits {
 		pcs.removePropertyChangeListener(listener);
 	}
 	
-	public void gererCollision() {
+	private void gererCollision() {
 		tas.ajouterElements(pieceActuelle);
+		pieceActuelle = pieceSuivante;
 		this.pieceSuivante = UsineDePiece.genererPiece();
+	}
+	
+	public void gravite() {
+		try {
+			this.pieceActuelle.deplacerDe(0, 1);
+		} catch (IllegalArgumentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (BloxException e) {
+			if (e.getType() == BloxException.BLOX_COLLISION) {
+				gererCollision(); 
+			}
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 }

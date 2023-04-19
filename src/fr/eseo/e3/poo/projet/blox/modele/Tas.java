@@ -1,12 +1,17 @@
 package fr.eseo.e3.poo.projet.blox.modele;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
+
+import fr.eseo.e3.poo.projet.blox.modele.pieces.Piece;
 
 
 public class Tas {
 	
 	private Element[][] elements;
 	private Puits puits;
+	private int nombre = 0;
 	
 	public Tas(Puits puits) {
 		this.puits = puits;
@@ -41,8 +46,11 @@ public class Tas {
 	public void supprimerElement(int x, int y) {
         this.elements[y][x] = null;
     }
+
 	
-	
+	public int getNombre() {
+		return this.nombre;
+	}
 
 	public Puits getPuits() {
 		return this.puits;
@@ -53,12 +61,11 @@ public class Tas {
 			throw new IllegalArgumentException("on ne peut pas construire le tas");
 		}
 		else {
-			int nombre = nbElements;
+			nombre = nbElements;
 			nbElements = 0;
 			System.out.println(nbLignes);
 			while (nbElements < nombre) {
 				//nombreAleatoire = rand.nextInt(max - min + 1) + min
-
 				int ordon = puits.getProfondeur()- (rand.nextInt(nbLignes) +1);
 				int abscisse =rand.nextInt(this.puits.getLargeur());
 
@@ -68,6 +75,16 @@ public class Tas {
 					nbElements ++;
 				}
 			}
+		}
+	}
+	
+	public void ajouterElements(Piece piece) {
+		List<Element> liste = piece.getElements();
+		
+		for(Element el : liste) {
+			int x = el.getCoordonnees().getAbscisse();
+			int y = el.getCoordonnees().getOrdonnee();
+			elements[y][x] = el;
 		}
 	}
 	

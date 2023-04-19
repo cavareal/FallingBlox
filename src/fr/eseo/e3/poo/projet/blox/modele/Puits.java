@@ -47,6 +47,7 @@ public class Puits {
         }
         this.largeur = largeur;
 		this.profondeur = profondeur;
+		pcs = new PropertyChangeSupport(this);
 		this.tas = new Tas(this, nbElements, nbLignes);
 	}
 	
@@ -99,6 +100,10 @@ public class Puits {
 		return this.tas;
 	}
 	
+	public void setTas(Tas tas) {
+		this.tas = tas;
+	}
+	
 	public String toString() {
 		String str = "Puits : Dimension " + getLargeur() + " x "+getProfondeur() + "\n";
 		if(pieceActuelle == null) {
@@ -122,6 +127,11 @@ public class Puits {
 	
 	public void removePropertyChangeListener(PropertyChangeListener listener) {
 		pcs.removePropertyChangeListener(listener);
+	}
+	
+	public void gererCollision() {
+		tas.ajouterElements(pieceActuelle);
+		this.pieceSuivante = UsineDePiece.genererPiece();
 	}
 	
 }

@@ -27,8 +27,10 @@ public class PieceDeplacementTest {
 		JFrame frame = new JFrame("Puits");
 		Puits puits = new Puits(10, 20);
 		VuePuits vuePuits = new VuePuits(puits);
+		
 		Tas tas = new Tas(puits, 5);
 		VueTas vueTas = new VueTas(vuePuits);
+		
 		puits.setPieceSuivante(UsineDePiece.genererPiece());
 		puits.setPieceSuivante(UsineDePiece.genererPiece());
 		puits.getPieceActuelle().setPosition(5, 5);

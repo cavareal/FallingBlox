@@ -25,6 +25,7 @@ public class VueTas {
 	public Tas getTas() {
 		return this.tas;
 	}
+
 	
 	public Color nuance(Color couleur) {
 		int r = couleur.getRed();
@@ -47,7 +48,7 @@ public class VueTas {
 		int taille = vuePuits.getTaille();
 		
 		for (int i = 0; i < elements.length; i++){
-			for(int j = 0; j<elements[0].length;j++) {
+			for(int j = 0; j<elements[i].length;j++) {
 				if (elements[i][j] != null) {
 					g2D.setColor(nuance((elements[i][j].getCouleur().getCouleurPourAffichage())));
 					g2D.fill3DRect(elements[i][j].getCoordonnees().getAbscisse() * taille, 

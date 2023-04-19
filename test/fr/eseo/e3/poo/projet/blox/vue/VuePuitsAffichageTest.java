@@ -34,16 +34,12 @@ public class VuePuitsAffichageTest {
 	}
 	//@Test
 	private void testConstructeurPuits() {
+		/*
 		Puits puits = new Puits(10, 20);
 		VuePuits vuePuits = new VuePuits(puits);
 		puits.setPieceSuivante(UsineDePiece.genererPiece());
 		puits.setPieceSuivante(UsineDePiece.genererPiece());
 		JFrame frame = new JFrame("Puits");
-		
-		
-		Tas tas = new Tas(puits, 5);
-		VueTas vueTas = new VueTas(vuePuits);
-		
 		
 		// Méthode avec setVuePiece();
 		//VuePiece vuepiece = new VuePiece(puits.getPieceSuivante(),20);
@@ -58,7 +54,19 @@ public class VuePuitsAffichageTest {
 		frame.pack();
 		frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // la fenêtre se ferme 
-		frame.setVisible(true);
+		frame.setVisible(true);*/
+		JFrame fenetre = new JFrame("Puits");
+		VuePuits vuePuits = new VuePuits(new Puits(10, 20, 5,6)); //Creation d'un tas dans le puits
+		UsineDePiece.setMode(0);
+		vuePuits.getPuits().setPieceSuivante(UsineDePiece.genererPiece());
+		PropertyChangeEvent evt = new PropertyChangeEvent(vuePuits, vuePuits.getPuits().getPieceSuivante().getClass().getSimpleName(),
+		null, vuePuits.getPuits().getPieceSuivante());
+		vuePuits.propertyChange(evt);
+		fenetre.getContentPane().add(vuePuits);
+		fenetre.pack();
+		fenetre.setLocationRelativeTo(null);
+		fenetre.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		fenetre.setVisible(true);
 		
 		/*
 		assertEquals(vuePuits.getPreferredSize(), new Dimension(puits.getLargeur() * VuePuits.TAILLE_PAR_DEFAUT, 

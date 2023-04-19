@@ -37,6 +37,12 @@ public class Tas {
 	public Element[][] getElements() {
 		return this.elements;
 	}
+	
+	public void supprimerElement(int x, int y) {
+        this.elements[y][x] = null;
+    }
+	
+	
 
 	public Puits getPuits() {
 		return this.puits;

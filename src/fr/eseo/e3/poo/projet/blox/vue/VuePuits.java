@@ -24,6 +24,7 @@ public class VuePuits extends JPanel implements PropertyChangeListener{
 	private VuePiece vuePiece;
 	private PieceDeplacement pieceDeplacement;
 	private PieceRotation pieceRotation;
+	private final VueTas vueTas;
 
 	public VuePuits(Puits puits){
 		this.puits = puits;
@@ -38,6 +39,7 @@ public class VuePuits extends JPanel implements PropertyChangeListener{
 		this.addMouseListener(pieceDeplacement);
 		this.addMouseListener(pieceRotation);
 		this.addMouseWheelListener(pieceDeplacement);
+		this.vueTas = new VueTas(this);
 	}
 	
 	public VuePuits(Puits puits, int taille){
@@ -53,6 +55,7 @@ public class VuePuits extends JPanel implements PropertyChangeListener{
 		this.addMouseListener(pieceDeplacement);
 		this.addMouseWheelListener(pieceDeplacement);
 		this.addMouseListener(pieceRotation);
+		this.vueTas = new VueTas(this);
 	}
 
 	public Puits getPuits() {
@@ -82,18 +85,14 @@ public class VuePuits extends JPanel implements PropertyChangeListener{
 		this.vuePiece = vuePiece;
 	}
 	
+	public VueTas getVueTas() {
+		return this.vueTas;
+	}
+	
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		/* appel vers super pour remplir le fond du JPanel */
-		/*Le paramètre g est copie en utilisant la méthode copie()
-		* puis converti en instance de Graphics2D grâce à
-		* un transtypage (cast) explicite.
-		*/
 		Graphics2D g2D = (Graphics2D)g.create();
-		/* Nous utiliserons l'instance de Graphics2D*/
-		
 		// Afficher une grille de couleur gris clair
-		
 	    g2D.setColor(Color.LIGHT_GRAY);
 	    
 	    for (int i = 0; i < puits.getProfondeur(); i++) {
@@ -101,10 +100,14 @@ public class VuePuits extends JPanel implements PropertyChangeListener{
 	            g2D.drawRect(j * this.taille, i * this.taille, this.taille, this.taille);
 	        }
 	    }
+	    if(vueTas != null) {
+	    	vueTas.afficher(g2D);
+	    }
 	    if(vuePiece != null) {
 	    	vuePiece.afficherPiece(g2D);
 	    }
-		/*Puis nous liberons la memoire*/
+	    
+	    
 		g2D.dispose();
 	}
 	
@@ -113,7 +116,6 @@ public class VuePuits extends JPanel implements PropertyChangeListener{
 		if (event.getPropertyName().equals(Puits.MODIFICATION_PIECE_ACTUELLE)) {
 			
 			setVuePiece(new VuePiece((Piece) event.getNewValue(), taille));
-			//setVuePiece(this.vuePiece);
             this.repaint();
         } 
 		

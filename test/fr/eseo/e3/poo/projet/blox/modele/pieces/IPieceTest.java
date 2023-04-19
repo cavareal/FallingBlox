@@ -93,7 +93,12 @@ public class IPieceTest {
 			list.add(new Element(1, 0));
 			list.add(new Element(1, -1));
 			
-			ip.tourner(true);
+			try {
+				ip.tourner(true);
+			} catch (BloxException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			
 			List<Element> listFinale = new ArrayList<>();
 			listFinale.add(new Element(1, 1));

@@ -91,7 +91,6 @@ public abstract class Piece {
 							 throw new BloxException("Sortie du Puits détectée !", BloxException.BLOX_SORTIE_PUITS);
 						}
 						if(collision(newX,newY) ) {
-							System.out.println("collision deplacement");
 							throw new BloxException("Collision détectée !", BloxException.BLOX_COLLISION);
 						}
 	            	}

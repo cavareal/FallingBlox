@@ -72,8 +72,6 @@ public class Puits {
 			Piece ancien  = pieceActuelle;
 			pieceActuelle = pieceSuivante;
 			pieceActuelle.setPosition(largeur/2, -4);
-			//pieceActuelle.setPuits(this);
-			
 			pcs.firePropertyChange(MODIFICATION_PIECE_ACTUELLE, ancien,pieceActuelle);
 		}
 		Piece ancien = this.pieceSuivante;
@@ -131,8 +129,7 @@ public class Puits {
 	
 	private void gererCollision() {
 		tas.ajouterElements(pieceActuelle);
-		pieceActuelle = pieceSuivante;
-		this.pieceSuivante = UsineDePiece.genererPiece();
+		setPieceSuivante(UsineDePiece.genererPiece());
 	}
 	
 	public void gravite() {
@@ -140,13 +137,13 @@ public class Puits {
 			this.pieceActuelle.deplacerDe(0, 1);
 		} catch (IllegalArgumentException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			//e.printStackTrace();
 		} catch (BloxException e) {
 			if (e.getType() == BloxException.BLOX_COLLISION) {
 				gererCollision(); 
 			}
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			//e.printStackTrace();
 		}
 	}
 	

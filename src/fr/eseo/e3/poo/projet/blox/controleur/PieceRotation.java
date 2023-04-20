@@ -24,7 +24,7 @@ public class PieceRotation extends MouseAdapter{
 				puits.getPieceActuelle().tourner(true);
 			} catch (BloxException e) {
 				// TODO Auto-generated catch block
-				e.printStackTrace();
+				//e.printStackTrace();
 			}
 			this.vuePuits.repaint();
 		}
@@ -33,7 +33,7 @@ public class PieceRotation extends MouseAdapter{
 				puits.getPieceActuelle().tourner(false);
 			} catch (BloxException e) {
 				// TODO Auto-generated catch block
-				e.printStackTrace();
+				//e.printStackTrace();
 			}
 			this.vuePuits.repaint();
 		}

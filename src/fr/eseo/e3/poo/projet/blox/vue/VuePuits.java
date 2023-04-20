@@ -9,6 +9,7 @@ import java.beans.PropertyChangeListener;
 
 import javax.swing.JPanel;
 
+import fr.eseo.e3.poo.projet.blox.controleur.Gravite;
 import fr.eseo.e3.poo.projet.blox.controleur.PieceDeplacement;
 import fr.eseo.e3.poo.projet.blox.controleur.PieceRotation;
 import fr.eseo.e3.poo.projet.blox.modele.Puits;
@@ -40,6 +41,7 @@ public class VuePuits extends JPanel implements PropertyChangeListener{
 		this.addMouseListener(pieceRotation);
 		this.addMouseWheelListener(pieceDeplacement);
 		this.vueTas = new VueTas(this);
+		new Gravite(this);
 	}
 	
 	public VuePuits(Puits puits, int taille){
@@ -56,6 +58,7 @@ public class VuePuits extends JPanel implements PropertyChangeListener{
 		this.addMouseWheelListener(pieceDeplacement);
 		this.addMouseListener(pieceRotation);
 		this.vueTas = new VueTas(this);
+		new Gravite(this);
 	}
 
 	public Puits getPuits() {
@@ -92,7 +95,6 @@ public class VuePuits extends JPanel implements PropertyChangeListener{
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		Graphics2D g2D = (Graphics2D)g; //.create()
-	    System.out.println(vueTas.getTas().getNombre());
 	    if(vueTas.getTas().getNombre() == 0) {
 	    	// Afficher une grille de couleur gris clair
 		    g2D.setColor(Color.LIGHT_GRAY);

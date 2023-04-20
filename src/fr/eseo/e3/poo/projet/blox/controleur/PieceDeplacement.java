@@ -43,7 +43,7 @@ public class PieceDeplacement extends MouseAdapter implements MouseMotionListene
 								puits.getPieceActuelle().deplacerDe(1, 0);
 							} catch (BloxException e) {
 								// TODO Auto-generated catch block
-								e.printStackTrace();
+								//e.printStackTrace();
 							}
 						}
 					}catch (IllegalArgumentException exception) {
@@ -56,7 +56,7 @@ public class PieceDeplacement extends MouseAdapter implements MouseMotionListene
 								puits.getPieceActuelle().deplacerDe(-1, 0);
 							} catch (BloxException e) {
 								// TODO Auto-generated catch block
-								e.printStackTrace();
+								//e.printStackTrace();
 							}
 						}
 					}catch (IllegalArgumentException exception) {
@@ -76,23 +76,7 @@ public class PieceDeplacement extends MouseAdapter implements MouseMotionListene
 	public void mouseEntered(MouseEvent evt){
 		this.numColonne = (int) Math.floor(evt.getX()/vuePuits.getTaille()); 
 	}
-	/*
-	public void mouseExited(MouseEvent evt) {
-		
-	}
-	
-	public void mousePressed(MouseEvent evt) {
-		
-	}
-	
-	public void mouseReleased(MouseEvent evt) {
-		
-	}
-	
-	public void Clicked(MouseEvent evt) {
-		
-	}
-	*/
+
 	public void mouseWheelMoved(MouseWheelEvent event) {
 		if(puits.getPieceActuelle() != null && event.getWheelRotation() > 0) {
 			try {
@@ -100,7 +84,7 @@ public class PieceDeplacement extends MouseAdapter implements MouseMotionListene
 					puits.getPieceActuelle().deplacerDe(0, 1);
 				} catch (BloxException e) {
 					// TODO Auto-generated catch block
-					e.printStackTrace();
+					//e.printStackTrace();
 				}
 			} catch (IllegalArgumentException exception) {
 				// Ne rien faire si le déplacement lève une exception

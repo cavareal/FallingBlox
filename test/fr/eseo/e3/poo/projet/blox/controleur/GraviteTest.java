@@ -3,37 +3,28 @@ package fr.eseo.e3.poo.projet.blox.controleur;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 
-import fr.eseo.e3.poo.projet.blox.modele.BloxException;
 import fr.eseo.e3.poo.projet.blox.modele.Puits;
-import fr.eseo.e3.poo.projet.blox.modele.Tas;
 import fr.eseo.e3.poo.projet.blox.modele.UsineDePiece;
 import fr.eseo.e3.poo.projet.blox.vue.VuePuits;
-import fr.eseo.e3.poo.projet.blox.vue.VueTas;
 
-public class PieceDeplacementTest {
+public class GraviteTest {
 
 	public static void main (String [] args) {
 		SwingUtilities.invokeLater(new Runnable () {
 			public void run() {
-				try {
-				new PieceDeplacementTest ();
-				}
-				catch(BloxException e) {
-					
-				}
+				new GraviteTest();
 			}
 		});
 	}
 	
-	public PieceDeplacementTest() throws BloxException  {
-		testDeplacement();
+	public GraviteTest() {
+		testg();
 	}
 	
-	private void testDeplacement() throws BloxException {
+	private void testg() {
 		JFrame frame = new JFrame("Puits");
 		Puits puits = new Puits(10, 20);
 		VuePuits vuePuits = new VuePuits(puits);
-		
 		
 		puits.setPieceSuivante(UsineDePiece.genererPiece());
 		puits.setPieceSuivante(UsineDePiece.genererPiece());
@@ -49,3 +40,4 @@ public class PieceDeplacementTest {
 	}
 
 }
+

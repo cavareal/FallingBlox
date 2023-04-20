@@ -63,7 +63,6 @@ public class Tas {
 		else {
 			nombre = nbElements;
 			nbElements = 0;
-			System.out.println(nbLignes);
 			while (nbElements < nombre) {
 				//nombreAleatoire = rand.nextInt(max - min + 1) + min
 				int ordon = puits.getProfondeur()- (rand.nextInt(nbLignes) +1);

@@ -59,6 +59,7 @@ public class VuePuitsAffichageTest {
 		VuePuits vuePuits = new VuePuits(new Puits(10, 20, 5,6)); //Creation d'un tas dans le puits
 		UsineDePiece.setMode(0);
 		vuePuits.getPuits().setPieceSuivante(UsineDePiece.genererPiece());
+		vuePuits.getPuits().setPieceSuivante(UsineDePiece.genererPiece());
 		PropertyChangeEvent evt = new PropertyChangeEvent(vuePuits, vuePuits.getPuits().getPieceSuivante().getClass().getSimpleName(),
 		null, vuePuits.getPuits().getPieceSuivante());
 		vuePuits.propertyChange(evt);
@@ -86,7 +87,7 @@ public class VuePuitsAffichageTest {
 			ip.tourner(true);
 		} catch (BloxException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			//e.printStackTrace();
 		}
 		puits.setPieceSuivante(ip);
 		PropertyChangeEvent evt = new PropertyChangeEvent(vuePuits, vuePuits.getPuits().getPieceSuivante().getClass().getSimpleName(), 

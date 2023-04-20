@@ -66,10 +66,10 @@ public class IPieceTest {
 			ip.deplacerDe(1, 0);
 		} catch (IllegalArgumentException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			//e.printStackTrace();
 		} catch (BloxException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			//e.printStackTrace();
 		}
 		
 		List<Element> listFinale = new ArrayList<>();
@@ -97,7 +97,7 @@ public class IPieceTest {
 				ip.tourner(true);
 			} catch (BloxException e) {
 				// TODO Auto-generated catch block
-				e.printStackTrace();
+				//e.printStackTrace();
 			}
 			
 			List<Element> listFinale = new ArrayList<>();

@@ -11,7 +11,7 @@ import fr.eseo.e3.poo.projet.blox.vue.VuePuits;
 public class Gravite implements ActionListener{
 	
 	private Timer timer;
-	public int periodicite;
+	public int periodicite = 10000;
 	private final Puits puits;
 	private final VuePuits vuePuits;
 	
@@ -19,12 +19,7 @@ public class Gravite implements ActionListener{
 		this.vuePuits = vuePuits;
 		this.puits = vuePuits.getPuits();
 		//timer.setDelay(1000); // 1 sec
-		Timer timer = new Timer(periodicite, new ActionListener() {
-	        @Override
-	        public void actionPerformed(ActionEvent e) {
-	            puits.gravite();
-	        }
-	    });
+		timer = new Timer(this.periodicite , this);
 	    
 	    timer.start();
 	}
@@ -37,6 +32,7 @@ public class Gravite implements ActionListener{
 
 	public void setPeriodicite(int periodicite) {
 		this.periodicite = periodicite;
+		this.timer.setDelay(periodicite);
 	}
 
 
@@ -63,6 +59,8 @@ public class Gravite implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
+		puits.gravite();
+		this.vuePuits.repaint();
 		
 	}
 	

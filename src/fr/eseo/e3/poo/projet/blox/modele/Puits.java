@@ -17,6 +17,7 @@ public class Puits {
 	private Piece pieceSuivante;
 	private PropertyChangeSupport pcs;
 	private Tas tas;
+	private boolean collisionBool;
 	
 	public Puits(){
 		this.largeur = LARGEUR_PAR_DEFAUT;
@@ -102,6 +103,10 @@ public class Puits {
 		this.tas = tas;
 	}
 	
+	public boolean isAppelUsineDePiece() {
+		return collisionBool;
+	}
+	
 	public String toString() {
 		String str = "Puits : Dimension " + getLargeur() + " x "+getProfondeur() + "\n";
 		if(pieceActuelle == null) {
@@ -130,6 +135,7 @@ public class Puits {
 	private void gererCollision() {
 		tas.ajouterElements(pieceActuelle);
 		setPieceSuivante(UsineDePiece.genererPiece());
+		collisionBool = true;
 	}
 	
 	public void gravite() {
@@ -140,11 +146,12 @@ public class Puits {
 			//e.printStackTrace();
 		} catch (BloxException e) {
 			if (e.getType() == BloxException.BLOX_COLLISION) {
+				collisionBool = false;
 				gererCollision(); 
 			}
 			// TODO Auto-generated catch block
 			//e.printStackTrace();
 		}
 	}
-	
+
 }

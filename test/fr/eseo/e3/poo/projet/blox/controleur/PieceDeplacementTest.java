@@ -5,10 +5,8 @@ import javax.swing.SwingUtilities;
 
 import fr.eseo.e3.poo.projet.blox.modele.BloxException;
 import fr.eseo.e3.poo.projet.blox.modele.Puits;
-import fr.eseo.e3.poo.projet.blox.modele.Tas;
 import fr.eseo.e3.poo.projet.blox.modele.UsineDePiece;
 import fr.eseo.e3.poo.projet.blox.vue.VuePuits;
-import fr.eseo.e3.poo.projet.blox.vue.VueTas;
 
 public class PieceDeplacementTest {
 
@@ -33,7 +31,6 @@ public class PieceDeplacementTest {
 		JFrame frame = new JFrame("Puits");
 		Puits puits = new Puits(10, 20);
 		VuePuits vuePuits = new VuePuits(puits);
-		
 		
 		puits.setPieceSuivante(UsineDePiece.genererPiece());
 		puits.setPieceSuivante(UsineDePiece.genererPiece());

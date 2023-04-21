@@ -104,11 +104,11 @@ public class VuePuits extends JPanel implements PropertyChangeListener{
 		        }
 		    }
 	    }
-	    if(vueTas != null) {
-	    	vueTas.afficher(g2D);
-	    }
 	    if(vuePiece != null) {
 	    	vuePiece.afficherPiece(g2D);
+	    }
+	    if(vueTas != null) {
+	    	vueTas.afficher(g2D);
 	    }
 	    
 	    

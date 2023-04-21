@@ -11,7 +11,6 @@ import fr.eseo.e3.poo.projet.blox.modele.BloxException;
 import fr.eseo.e3.poo.projet.blox.modele.Coordonnees;
 import fr.eseo.e3.poo.projet.blox.modele.Couleur;
 import fr.eseo.e3.poo.projet.blox.modele.Puits;
-import fr.eseo.e3.poo.projet.blox.modele.Tas;
 import fr.eseo.e3.poo.projet.blox.modele.UsineDePiece;
 import fr.eseo.e3.poo.projet.blox.modele.pieces.IPiece;
 

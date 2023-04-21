@@ -19,6 +19,10 @@ public class VuePiece {
 		this.taille = taille;
 	}
 	
+	public Piece getPiece() {
+		return this.piece;
+	}
+	
 	public Color teinte(Color couleur) {
 		int r = couleur.getRed();
 		int g = couleur.getGreen();

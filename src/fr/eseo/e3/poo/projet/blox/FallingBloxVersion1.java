@@ -23,12 +23,12 @@ public class FallingBloxVersion1 {
             nbElements = 0;
         }
 		else if (args.length == 1) {
-            nbElements = Integer.parseInt(args[1]);
+            nbElements = Integer.parseInt(args[0]);
             new Tas(puits, nbElements);
         }
 		else if (args.length == 2) {
-			nbElements = Integer.parseInt(args[1]);
-            nbLignes = Integer.parseInt(args[2]);
+			nbElements = Integer.parseInt(args[0]);
+            nbLignes = Integer.parseInt(args[1]);
             new Tas(puits, nbElements, nbLignes);
         }
 		VuePuits vuePuits = new VuePuits(puits);

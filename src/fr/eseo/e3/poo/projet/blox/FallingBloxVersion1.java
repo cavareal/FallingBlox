@@ -12,12 +12,16 @@ import fr.eseo.e3.poo.projet.blox.vue.VuePuits;
 
 
 public class FallingBloxVersion1 {
+	
+	private FallingBloxVersion1() {
+		
+	}
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		int nbElements = 0; 
 		int nbLignes = 0;
-		Puits puits = new Puits(10,20); 
+		Puits puits = new Puits(10,20);
 		
 		if (args.length == 0) {
             nbElements = 0;

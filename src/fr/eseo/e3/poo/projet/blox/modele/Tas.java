@@ -27,13 +27,13 @@ public class Tas {
 	
 	public Tas(Puits puits, int nbElements, int nbLignes) {
 		this.puits = puits;
-		this.elements = new  Element[puits.getProfondeur()][puits.getLargeur()];;
+		this.elements = new  Element[puits.getProfondeur()][puits.getLargeur()];
 		construireTas(nbElements, nbLignes, new Random());
 	}
 	
 	public Tas(Puits puits, int nbElements, int nbLignes, Random rand) {
 		this.puits = puits;
-		this.elements = new  Element[puits.getProfondeur()][puits.getLargeur()];;
+		this.elements = new  Element[puits.getProfondeur()][puits.getLargeur()];
 		construireTas(nbElements, nbLignes, rand);
 	}
 
@@ -83,6 +83,7 @@ public class Tas {
 			int x = el.getCoordonnees().getAbscisse();
 			int y = el.getCoordonnees().getOrdonnee();
 			elements[y][x] = el;
+			//nombre ++;
 		}
 	}
 	

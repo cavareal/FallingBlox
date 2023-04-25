@@ -1,5 +1,7 @@
 package fr.eseo.e3.poo.projet.blox.modele;
 
+import java.util.Objects;
+
 public class Element {
 	
 	private Coordonnees coordonnees;
@@ -61,21 +63,10 @@ public class Element {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Element other = (Element) obj;
-		if (coordonnees == null) {
-			if (other.coordonnees != null)
-				return false;
-		} else if (!coordonnees.equals(other.coordonnees))
-			return false;
-		if (couleur != other.couleur)
-			return false;
-		return true;
+	    if (this == obj) return true;
+	    if (obj == null || getClass() != obj.getClass()) return false;
+	    Element other = (Element) obj;
+	    return Objects.equals(coordonnees, other.coordonnees) && couleur == other.couleur;
 	}
 	
 	

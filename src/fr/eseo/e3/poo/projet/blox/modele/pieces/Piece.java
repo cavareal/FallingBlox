@@ -48,9 +48,7 @@ public abstract class Piece {
 	protected abstract void setElements(Coordonnees coor, Couleur couleur); //signature
 	
 	public void deplacerDe(int x, int y) throws IllegalArgumentException, BloxException{
-		if (y < 0 || Math.abs(x)>1  || y>1) {
-            throw new IllegalArgumentException("Le déplacement doit horizontal avec un y>0 et une seule case");
-        }
+		deplacementPb(x,y);
 		if(puits != null) {
 			for(Element el : this.elements) {
 				int newX =  el.getCoordonnees().getAbscisse() + x;
@@ -66,11 +64,19 @@ public abstract class Piece {
 			}	
 			
 		}
+		deplacementOk(x,y);
+	}
+	
+	private void deplacementPb(int x, int y) {
+		if (y < 0 || Math.abs(x)>1  || y>1) {
+            throw new IllegalArgumentException("Le déplacement doit horizontal avec un y>0 et une seule case");
+        }
+	}
+	
+	private void deplacementOk(int x, int y) {
 		for(Element el : this.elements) {
 			el.deplacerDe(x, y);
 		}
-		//setPosition(elements.get(0).getCoordonnees().getAbscisse()+x,
-				//elements.get(0).getCoordonnees().getOrdonnee() + y );
 	}
 	
 	public void tourner(boolean sensHoraire) throws BloxException {
@@ -81,28 +87,35 @@ public abstract class Piece {
 		//ETAPE 2 et 3 :  rotation des éléments autour de l'origine + translation
 		 for (int i = 0; i<elements.size(); i++) {
 	            if (elements != elements.get(0)) {
-	            
-	                int x = elements.get(i).getCoordonnees().getAbscisse();
-	                int y = elements.get(i).getCoordonnees().getOrdonnee();
-	            	int newX = (y - coor.getOrdonnee()) * (sensHoraire ? -1 : 1) + coor.getAbscisse();
-	            	int newY = (x - coor.getAbscisse()) * (sensHoraire ? 1 : -1) + coor.getOrdonnee();
-	            	if(puits !=null) {
-		            	if(sortiePuits(newX)) {
-							 throw new BloxException("Sortie du Puits détectée !", BloxException.BLOX_SORTIE_PUITS);
-						}
-						if(collision(newX,newY) ) {
-							throw new BloxException("Collision détectée !", BloxException.BLOX_COLLISION);
-						}
-	            	}
+	            	tournerPb(coor,sensHoraire, i);
 	            }
 	        }
+		 tournerOk(coor,sensHoraire);
+	}
+	
+	private void tournerOk(Coordonnees coor, boolean sensHoraire) {
 		 for (int i = 0; i<elements.size(); i++) {
-			int x = elements.get(i).getCoordonnees().getAbscisse();
-            int y = elements.get(i).getCoordonnees().getOrdonnee();
-         	int newX = (y - coor.getOrdonnee()) * (sensHoraire ? -1 : 1) + coor.getAbscisse();
-         	int newY = (x - coor.getAbscisse()) * (sensHoraire ? 1 : -1) + coor.getOrdonnee();
-         	elements.get(i).setCoordonnees(new Coordonnees((int)newX,(int)newY));
-		 }
+				int x = elements.get(i).getCoordonnees().getAbscisse();
+	            int y = elements.get(i).getCoordonnees().getOrdonnee();
+	         	int newX = (y - coor.getOrdonnee()) * (sensHoraire ? -1 : 1) + coor.getAbscisse();
+	         	int newY = (x - coor.getAbscisse()) * (sensHoraire ? 1 : -1) + coor.getOrdonnee();
+	         	elements.get(i).setCoordonnees(new Coordonnees((int)newX,(int)newY));
+			 }
+	}
+	
+	private void tournerPb(Coordonnees coor, boolean sensHoraire, int i) throws BloxException {
+		int x = elements.get(i).getCoordonnees().getAbscisse();
+        int y = elements.get(i).getCoordonnees().getOrdonnee();
+    	int newX = (y - coor.getOrdonnee()) * (sensHoraire ? -1 : 1) + coor.getAbscisse();
+    	int newY = (x - coor.getAbscisse()) * (sensHoraire ? 1 : -1) + coor.getOrdonnee();
+    	if(puits !=null) {
+        	if(sortiePuits(newX)) {
+				 throw new BloxException("Sortie du Puits détectée !", BloxException.BLOX_SORTIE_PUITS);
+			}
+			if(collision(newX,newY) ) {
+				throw new BloxException("Collision détectée !", BloxException.BLOX_COLLISION);
+			}
+    	}
 	}
 	
 	private boolean collision(int newX, int newY) {

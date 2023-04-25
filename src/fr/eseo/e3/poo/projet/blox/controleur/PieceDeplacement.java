@@ -37,36 +37,45 @@ public class PieceDeplacement extends MouseAdapter implements MouseMotionListene
 					this.numColonne = newNumC;
 				}
 				else if (newNumC > numColonne) {
-					try {
-						if(puits.getPieceActuelle() !=null) {
-							try {
-								puits.getPieceActuelle().deplacerDe(1, 0);
-							} catch (BloxException e) {
-								// TODO Auto-generated catch block
-								//e.printStackTrace();
-							}
-						}
-					}catch (IllegalArgumentException exception) {
-						// Ne rien faire si le déplacement lève une exception
-					}
-				}else if (newNumC < numColonne) {
-					try {
-						if(puits.getPieceActuelle() != null) {
-							try {
-								puits.getPieceActuelle().deplacerDe(-1, 0);
-							} catch (BloxException e) {
-								// TODO Auto-generated catch block
-								//e.printStackTrace();
-							}
-						}
-					}catch (IllegalArgumentException exception) {
-						// Ne rien faire si le déplacement lève une exception
-					}
+					newNumCSUPnumColonne();
+				}
+				else if (newNumC < numColonne) {
+					newNumINFnumColonne();
 				}
 				numColonne = newNumC;
 			}
 		}
 		this.vuePuits.repaint();
+	}
+	
+	public void newNumCSUPnumColonne() {
+		try {
+			if(puits.getPieceActuelle() !=null) {
+				try {
+					puits.getPieceActuelle().deplacerDe(1, 0);
+				} catch (BloxException e) {
+					// TODO Auto-generated catch block
+					//e.printStackTrace();
+				}
+			}
+		}catch (IllegalArgumentException exception) {
+			// Ne rien faire si le déplacement lève une exception
+		}
+	}
+	
+	public void newNumINFnumColonne() {
+		try {
+			if(puits.getPieceActuelle() != null) {
+				try {
+					puits.getPieceActuelle().deplacerDe(-1, 0);
+				} catch (BloxException e) {
+					// TODO Auto-generated catch block
+					//e.printStackTrace();
+				}
+			}
+		}catch (IllegalArgumentException exception) {
+			// Ne rien faire si le déplacement lève une exception
+		}
 	}
 	
 	public void mouseDragged(MouseEvent event) {

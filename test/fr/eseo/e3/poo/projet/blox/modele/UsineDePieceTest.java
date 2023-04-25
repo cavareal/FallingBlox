@@ -55,5 +55,14 @@ public class UsineDePieceTest {
         Piece piece2 = UsineDePiece.genererPiece();
         assertNotEquals(piece1, piece2);
     }
+    
+    @Test 
+    public void testCoucou() {
+    	Piece piece = UsineDePiece.coucou();
+    	
+    	Piece pieceOk = new OPiece(new Coordonnees(2,3), Couleur.ROUGE);
+    	
+    	assertEquals(pieceOk, piece);
+    }
 
 }

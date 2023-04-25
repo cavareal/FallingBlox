@@ -95,7 +95,7 @@ public class VuePuits extends JPanel implements PropertyChangeListener{
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		Graphics2D g2D = (Graphics2D)g; //.create()
-	    if(vueTas.getTas().getNombre() == 0) {
+	    //if(vueTas.getTas().getNombre() == 0) {
 	    	// Afficher une grille de couleur gris clair
 		    g2D.setColor(Color.LIGHT_GRAY);
 	    	for (int i = 0; i < puits.getProfondeur(); i++) {
@@ -103,7 +103,7 @@ public class VuePuits extends JPanel implements PropertyChangeListener{
 		            g2D.drawRect(j * this.taille, i * this.taille, this.taille, this.taille);
 		        }
 		    }
-	    }
+	    //}
 	    if(vuePiece != null) {
 	    	vuePiece.afficherPiece(g2D);
 	    }

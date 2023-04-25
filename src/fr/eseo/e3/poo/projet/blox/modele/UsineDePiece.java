@@ -91,8 +91,6 @@ public class UsineDePiece {
 		return piece;
 	}
 	
-	public static Piece coucou() {
-		return choisirPiece(0, Couleur.ROUGE);
-	}
+
 	
 }

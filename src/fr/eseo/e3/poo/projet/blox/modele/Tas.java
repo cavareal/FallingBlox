@@ -1,10 +1,10 @@
 package fr.eseo.e3.poo.projet.blox.modele;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
 import fr.eseo.e3.poo.projet.blox.modele.pieces.Piece;
-
 
 public class Tas {
 	
@@ -13,6 +13,8 @@ public class Tas {
 	private int nombre = 0;
 	private boolean isSupprimerLigne;
 	private int ligneSupprimee;
+	private int score = 0;
+    private List<Observateur> observateurs = new ArrayList<>();
 	
 	public Tas(Puits puits) {
 		this.puits = puits;
@@ -56,6 +58,17 @@ public class Tas {
 	public Puits getPuits() {
 		return this.puits;
 	}
+	
+
+	public int getScore() {
+		return score;
+	}
+
+	public void setScore(int score) {
+		this.score = score;
+		notifierObservateurs();
+	}
+	
 
 	private void construireTas(int nbElements, int nbLignes, Random rand) {
 		if(nbElements != 0 && nbElements>=nbLignes*puits.getLargeur()) {
@@ -97,7 +110,7 @@ public class Tas {
 				compteur++;
 			}
 			if(compteur == puits.getLargeur()) {
-				System.out.println(j);
+				this.setScore(score += 10);
 				return j;
 			}
 		}
@@ -117,36 +130,29 @@ public class Tas {
 	public void tasGravite() throws BloxException{
 		
 		if(isSupprimerLigne) {
-		for(int j = ligneSupprimee; j > 0; j--) {
-			for (int i =0; i < puits.getLargeur(); i++) {
-				elements[j][i]= elements[j-1][i];
-				if(elements[j-1][i] != null) {
-					//elements[j][i].deplacerDeCollision(0, 1, puits.getProfondeur());
-					elements[j][i].setCoordonnees(new Coordonnees(i, j));
+			for(int j = ligneSupprimee; j > 0; j--) {
+				for (int i =0; i < puits.getLargeur(); i++) {
+					elements[j][i]= elements[j-1][i];
+					if(elements[j-1][i] != null) {
+						//elements[j][i].deplacerDeCollision(0, 1, puits.getProfondeur());
+						elements[j][i].setCoordonnees(new Coordonnees(i, j));
+					}
 				}
 			}
 		}
-		}
 		isSupprimerLigne = false;
-		
-		/*
-		if (isSupprimerLigne) {
-	        for (int j = ligneSupprimee; j >= 0; j--) {
-	            for (int i = 0; i < puits.getLargeur(); i++) {
-	                if (elements[j][i] != null) {
-	                    if (j > 0) {
-	                        Element temp = elements[j-1][i];
-	                        elements[j-1][i] = elements[j][i];
-	                        elements[j][i] = temp;
-	                    } else {
-	                        elements[j][i] = null;
-	                    }
-	                }
-	            }
-	        }
-	    }
-	    isSupprimerLigne = false;*/
 	}
 	
-	
+    public void ajouterObservateur(Observateur observateur) {
+        observateurs.add(observateur);
+    }
+
+    private void notifierObservateurs() {
+        for (Observateur observateur : observateurs) {
+            observateur.actualiser(score);
+        }
+    }
+
+
 }
+

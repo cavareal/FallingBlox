@@ -36,6 +36,8 @@ public class PanneauInformation extends JPanel implements PropertyChangeListener
 		g2D.dispose();
 	}
 	
+
+	
 	@Override
 	public void propertyChange(PropertyChangeEvent evt) {
 		// TODO Auto-generated method stub

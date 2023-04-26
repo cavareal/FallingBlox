@@ -18,6 +18,7 @@ public class PanneauInformation extends JPanel implements PropertyChangeListener
 	private static final long serialVersionUID = 1L;
 	private Puits puits;
 	private VuePiece vuePiece;
+	private int score = 0;
 	
 	public PanneauInformation(Puits puits) {
 		this.puits = puits;
@@ -36,6 +37,9 @@ public class PanneauInformation extends JPanel implements PropertyChangeListener
 		g2D.dispose();
 	}
 	
+	public int getScore() {
+		return this.score;
+	}
 
 	
 	@Override
@@ -48,6 +52,10 @@ public class PanneauInformation extends JPanel implements PropertyChangeListener
 			}
             this.repaint();
         } 
+		if(score != puits.getTas().getScore()) {
+			
+			score = puits.getTas().getScore();
+		}
 	}
 	
 	

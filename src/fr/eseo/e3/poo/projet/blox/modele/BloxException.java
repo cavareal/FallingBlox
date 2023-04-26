@@ -8,6 +8,7 @@ public class BloxException extends Exception {
 	
 	public static final int BLOX_COLLISION = 0;
 	public static final int BLOX_SORTIE_PUITS = 1; 
+	public static final int BLOX_GAME_OVER = 2;
 	private int type;
 	
 	public BloxException(String message, int type) {

@@ -11,6 +11,7 @@ import fr.eseo.e3.poo.projet.blox.modele.Observateur;
 import fr.eseo.e3.poo.projet.blox.modele.Puits;
 import fr.eseo.e3.poo.projet.blox.modele.Tas;
 import fr.eseo.e3.poo.projet.blox.modele.UsineDePiece;
+import fr.eseo.e3.poo.projet.blox.vue.GameOverAffichage;
 import fr.eseo.e3.poo.projet.blox.vue.PanneauInformation;
 import fr.eseo.e3.poo.projet.blox.vue.VuePuits;
 
@@ -53,7 +54,7 @@ public class FallingBloxVersion2 implements Observateur{
 		JFrame frame = new JFrame("Falling Blox");
 		
 		JLabel label = new JLabel("Score :");
-		scoreLabel = new JLabel(String.valueOf(puits.getTas().getScore()));
+		scoreLabel = new JLabel(String.valueOf(panneauInfo.getScore()));
 		frame.setLayout(new BorderLayout());
         JPanel panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
@@ -67,11 +68,16 @@ public class FallingBloxVersion2 implements Observateur{
 		frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // la fenêtre se ferme 
 		frame.setVisible(true);
+		
+		GameOverAffichage goa = new GameOverAffichage(puits);
+		
 	}
 	
 	public void actualiser(int score) {
         scoreLabel.setText(String.valueOf(score)); // mise à jour de la valeur du JLabel du score
     }
+	
+
 }
 
 

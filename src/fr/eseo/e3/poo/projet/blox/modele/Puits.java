@@ -18,6 +18,7 @@ public class Puits {
 	private PropertyChangeSupport pcs;
 	private Tas tas;
 	private boolean collisionBool;
+	private boolean isGameOver;
 	
 	public Puits(){
 		this.largeur = LARGEUR_PAR_DEFAUT;
@@ -67,6 +68,11 @@ public class Puits {
 	public int getProfondeur() {
 		return this.profondeur;
 	}
+	
+	public boolean getIsGameOver() {
+		return this.isGameOver;
+	}
+
 	
 	public void setPieceSuivante(Piece piece) {
 		if (pieceSuivante != null) {
@@ -133,13 +139,19 @@ public class Puits {
 	}
 	
 	private void gererCollision() {
-		tas.ajouterElements(pieceActuelle);
+		try {
+			tas.ajouterElements(pieceActuelle);
+		} catch (BloxException e) {
+			// TODO Auto-generated catch block
+			if(e.getType() == BloxException.BLOX_GAME_OVER) {
+				isGameOver = true;
+			}
+		}
 		setPieceSuivante(UsineDePiece.genererPiece());
 		collisionBool = true;
 	}
 	
-	private void gererTasCollision(){
-	}
+
 	public void gravite() {
 		try {
 			this.tas.tasGravite();

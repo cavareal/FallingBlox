@@ -91,14 +91,16 @@ public class Tas {
 		}
 	}
 	
-	public void ajouterElements(Piece piece) {
+	public void ajouterElements(Piece piece) throws BloxException {
 		List<Element> liste = piece.getElements();
 		
 		for(Element el : liste) {
 			int x = el.getCoordonnees().getAbscisse();
 			int y = el.getCoordonnees().getOrdonnee();
-			elements[y][x] = el;
-			//nombre ++;
+			if(y < 0) {
+				throw new BloxException("GAME OVER", BloxException.BLOX_GAME_OVER);
+			}
+				elements[y][x] = el;
 		}
 	}
 	

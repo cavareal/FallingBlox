@@ -87,5 +87,28 @@ public class Tas {
 		}
 	}
 	
+	public int lignePleine() {
+		for(int j = 0; j < puits.getProfondeur(); j++) {
+			int compteur = 0;
+			for (int i =0; i < puits.getLargeur(); i++) {
+				if(elements[j][i] != null) {
+					compteur ++;
+				}
+				if(compteur == puits.getLargeur()) {
+					return j;
+				}
+			}
+		}
+		return -1;
+	}
+	
+	public void supprimerLignes(int y) {
+		if(y != -1) {
+			for(int i=0; i < puits.getLargeur(); i++) {
+				supprimerElement(i,y);
+			}
+		}
+	}
+	
 	
 }

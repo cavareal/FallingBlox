@@ -71,7 +71,7 @@ public class UsineDePiece {
 	private static Piece choisirPiece(int entier, Couleur couleur) {
 		Piece piece = null;
 		switch(entier) {
-		case 0:
+		/*case 0:
 			piece = new OPiece(new Coordonnees(2,3),couleur);
 		case 1:
 			piece = new IPiece(new Coordonnees(2,3),couleur);
@@ -87,8 +87,27 @@ public class UsineDePiece {
 			piece = new SPiece(new Coordonnees(2,3),couleur);
 		default:
 			//piece = new OPiece(new Coordonnees(2,3),couleur);
+		*/
+		
+		case 0:
+			return new OPiece(new Coordonnees(2,3),couleur);
+		case 1:
+			return new IPiece(new Coordonnees(2,3),couleur);
+		case 2:
+			return new TPiece(new Coordonnees(2,3),couleur);
+		case 3:
+			return new LPiece(new Coordonnees(2,3),couleur);
+		case 4:
+			return new JPiece(new Coordonnees(2,3),couleur);
+		case 5:
+			return new ZPiece(new Coordonnees(2,3),couleur);
+		case 6:
+			return new SPiece(new Coordonnees(2,3),couleur);
+		default:
+			
 		}
-		return piece;
+		return null;
+		//return piece;
 	}
 	
 

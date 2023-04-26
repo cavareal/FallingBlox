@@ -4,7 +4,6 @@ package fr.eseo.e3.poo.projet.blox.vue;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 
-
 import java.beans.PropertyChangeEvent;
 
 import fr.eseo.e3.poo.projet.blox.modele.BloxException;
@@ -33,28 +32,6 @@ public class VuePuitsAffichageTest {
 	}
 	//@Test
 	private void testConstructeurPuits() {
-		/*
-		Puits puits = new Puits(10, 20);
-		VuePuits vuePuits = new VuePuits(puits);
-		puits.setPieceSuivante(UsineDePiece.genererPiece());
-		puits.setPieceSuivante(UsineDePiece.genererPiece());
-		JFrame frame = new JFrame("Puits");
-		
-		// Méthode avec setVuePiece();
-		//VuePiece vuepiece = new VuePiece(puits.getPieceSuivante(),20);
-		//vuePuits.setVuePiece(vuepiece);
-		//UsineDePiece.setMode(UsineDePiece.ALEATOIRE_PIECE);
-		
-		//Méthode avec PropertyChange
-		PropertyChangeEvent evt = new PropertyChangeEvent(vuePuits, vuePuits.getPuits().getPieceSuivante().getClass().getSimpleName(), 
-				null, vuePuits.getPuits().getPieceSuivante());
-		vuePuits.propertyChange(evt);
-		frame.getContentPane().add(vuePuits);
-		frame.pack();
-		frame.setLocationRelativeTo(null);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // la fenêtre se ferme 
-		frame.setVisible(true);*/
-		JFrame fenetre = new JFrame("Puits");
 		VuePuits vuePuits = new VuePuits(new Puits(10, 20, 5,6)); //Creation d'un tas dans le puits
 		UsineDePiece.setMode(0);
 		vuePuits.getPuits().setPieceSuivante(UsineDePiece.genererPiece());
@@ -62,6 +39,7 @@ public class VuePuitsAffichageTest {
 		PropertyChangeEvent evt = new PropertyChangeEvent(vuePuits, vuePuits.getPuits().getPieceSuivante().getClass().getSimpleName(),
 		null, vuePuits.getPuits().getPieceSuivante());
 		vuePuits.propertyChange(evt);
+		JFrame fenetre = new JFrame("Puits");
 		fenetre.getContentPane().add(vuePuits);
 		fenetre.pack();
 		fenetre.setLocationRelativeTo(null);
@@ -76,7 +54,6 @@ public class VuePuitsAffichageTest {
 	}
 	
 	private void testConstructeurPuitsTaille() {
-		JFrame frame = new JFrame("Puits et taille");
 		Puits puits = new Puits(15, 25);
 		VuePuits vuePuits = new VuePuits(puits);
 		//puits.setPieceSuivante(UsineDePiece.genererPiece());
@@ -91,6 +68,7 @@ public class VuePuitsAffichageTest {
 		puits.setPieceSuivante(ip);
 		PropertyChangeEvent evt = new PropertyChangeEvent(vuePuits, vuePuits.getPuits().getPieceSuivante().getClass().getSimpleName(), 
 				null, vuePuits.getPuits().getPieceSuivante());
+		JFrame frame = new JFrame("Puits et taille");
 		vuePuits.propertyChange(evt);
 		frame.getContentPane().add(vuePuits);
 		frame.pack();

@@ -11,7 +11,7 @@ import fr.eseo.e3.poo.projet.blox.vue.VuePuits;
 public class Gravite implements ActionListener{
 	
 	private Timer timer;
-	public int periodicite = 10000;
+	public int periodicite = 500;
 	private final Puits puits;
 	private final VuePuits vuePuits;
 	
@@ -61,7 +61,6 @@ public class Gravite implements ActionListener{
 		// TODO Auto-generated method stub
 		puits.gravite();
 		this.vuePuits.repaint();
-		
 	}
 	
 	

@@ -6,7 +6,8 @@ public class Element {
 	
 	private Coordonnees coordonnees;
 	private Couleur couleur;
-	
+	//private Puits puits;
+
 	public Element(Coordonnees coor){
 		this.coordonnees = coor;
 		this.couleur = Couleur.values()[0]; //Values() crée un tableau de l'enum dans l'ordre de déclaration
@@ -35,6 +36,7 @@ public class Element {
 		return this.couleur;
 	}
 	
+	
 	public void setCoordonnees(Coordonnees coor) {
 		this.coordonnees = coor; 
 	}
@@ -51,6 +53,17 @@ public class Element {
 		setCoordonnees(new Coordonnees(this.getCoordonnees().getAbscisse()+x,
 					this.getCoordonnees().getOrdonnee() + y ));
 	}
+	/*
+	public void deplacerDeCollision(int x, int y, int profondeur) throws BloxException{
+		int newX = this.getCoordonnees().getAbscisse();
+		int newY = this.getCoordonnees().getOrdonnee();
+		if(newY >= profondeur) {
+			throw new BloxException("Collision détectée !", BloxException.BLOX_TAS_COLLISION);
+		}
+		else {
+			deplacerDe(newX, newY);
+		}
+	}*/
 	
 	@Override
 	public int hashCode() {

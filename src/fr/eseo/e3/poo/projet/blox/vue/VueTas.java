@@ -56,6 +56,7 @@ public class VueTas {
 				}
 			}
 		}
+		vuePuits.repaint();
 		tas.supprimerLignes(tas.lignePleine());
 	}
 	

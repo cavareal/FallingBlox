@@ -138,8 +138,11 @@ public class Puits {
 		collisionBool = true;
 	}
 	
+	private void gererTasCollision(){
+	}
 	public void gravite() {
 		try {
+			this.tas.tasGravite();
 			this.pieceActuelle.deplacerDe(0, 1);
 		} catch (IllegalArgumentException e) {
 			// TODO Auto-generated catch block
@@ -149,6 +152,7 @@ public class Puits {
 				collisionBool = false;
 				gererCollision(); 
 			}
+
 			// TODO Auto-generated catch block
 			//e.printStackTrace();
 		}

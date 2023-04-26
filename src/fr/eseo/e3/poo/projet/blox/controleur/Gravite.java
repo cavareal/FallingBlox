@@ -60,7 +60,7 @@ public class Gravite implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		puits.gravite();
-		this.vuePuits.repaint();
+		this.vuePuits.customRepaint();
 	}
 	
 	

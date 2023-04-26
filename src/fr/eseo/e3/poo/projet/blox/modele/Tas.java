@@ -11,6 +11,8 @@ public class Tas {
 	private Element[][] elements;
 	private Puits puits;
 	private int nombre = 0;
+	private boolean isSupprimerLigne;
+	private int ligneSupprimee;
 	
 	public Tas(Puits puits) {
 		this.puits = puits;
@@ -91,12 +93,12 @@ public class Tas {
 		for(int j = 0; j < puits.getProfondeur(); j++) {
 			int compteur = 0;
 			for (int i =0; i < puits.getLargeur(); i++) {
-				if(elements[j][i] != null) {
-					compteur ++;
-				}
-				if(compteur == puits.getLargeur()) {
-					return j;
-				}
+				if(elements[j][i] == null) break;
+				compteur++;
+			}
+			if(compteur == puits.getLargeur()) {
+				System.out.println(j);
+				return j;
 			}
 		}
 		return -1;
@@ -106,8 +108,44 @@ public class Tas {
 		if(y != -1) {
 			for(int i=0; i < puits.getLargeur(); i++) {
 				supprimerElement(i,y);
+				isSupprimerLigne = true;
+				ligneSupprimee = y;
 			}
 		}
+	}
+	
+	public void tasGravite() throws BloxException{
+		
+		if(isSupprimerLigne) {
+		for(int j = ligneSupprimee; j > 0; j--) {
+			for (int i =0; i < puits.getLargeur(); i++) {
+				elements[j][i]= elements[j-1][i];
+				if(elements[j-1][i] != null) {
+					//elements[j][i].deplacerDeCollision(0, 1, puits.getProfondeur());
+					elements[j][i].setCoordonnees(new Coordonnees(i, j));
+				}
+			}
+		}
+		}
+		isSupprimerLigne = false;
+		
+		/*
+		if (isSupprimerLigne) {
+	        for (int j = ligneSupprimee; j >= 0; j--) {
+	            for (int i = 0; i < puits.getLargeur(); i++) {
+	                if (elements[j][i] != null) {
+	                    if (j > 0) {
+	                        Element temp = elements[j-1][i];
+	                        elements[j-1][i] = elements[j][i];
+	                        elements[j][i] = temp;
+	                    } else {
+	                        elements[j][i] = null;
+	                    }
+	                }
+	            }
+	        }
+	    }
+	    isSupprimerLigne = false;*/
 	}
 	
 	

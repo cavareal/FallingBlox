@@ -37,7 +37,6 @@ public class FallingBloxVersion1 {
         }
 		VuePuits vuePuits = new VuePuits(puits);
         PanneauInformation panneauInfo = new PanneauInformation(puits);
-        
         puits.setPieceSuivante(UsineDePiece.genererPiece());
 		puits.setPieceSuivante(UsineDePiece.genererPiece());
 		

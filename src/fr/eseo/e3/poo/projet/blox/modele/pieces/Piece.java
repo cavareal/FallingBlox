@@ -57,12 +57,10 @@ public abstract class Piece {
 				if(sortiePuits(newX)) {
 					 throw new BloxException("Sortie du Puits détectée !", BloxException.BLOX_SORTIE_PUITS);
 				}
-				
 				if(collision(newX,newY) ) {
 					throw new BloxException("Collision détectée !", BloxException.BLOX_COLLISION);
 				}
 			}	
-			
 		}
 		deplacementOk(x,y);
 	}

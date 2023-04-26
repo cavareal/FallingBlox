@@ -12,6 +12,7 @@ import javax.swing.JPanel;
 import fr.eseo.e3.poo.projet.blox.controleur.Gravite;
 import fr.eseo.e3.poo.projet.blox.controleur.PieceDeplacement;
 import fr.eseo.e3.poo.projet.blox.controleur.PieceRotation;
+import fr.eseo.e3.poo.projet.blox.modele.Element;
 import fr.eseo.e3.poo.projet.blox.modele.Puits;
 import fr.eseo.e3.poo.projet.blox.modele.pieces.Piece;
 
@@ -109,6 +110,7 @@ public class VuePuits extends JPanel implements PropertyChangeListener{
 	    }
 	    if(vueTas != null) {
 	    	vueTas.afficher(g2D);
+	    	this.repaint();
 	    }
 	    this.setBackground(new Color(255,255,255));
 	    
@@ -123,6 +125,11 @@ public class VuePuits extends JPanel implements PropertyChangeListener{
             this.repaint();
         } 
 		
+	}
+	
+	public void customRepaint() {
+		Element[][] elements = puits.getTas().getElements();
+		this.repaint();
 	}
 	
 	

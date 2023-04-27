@@ -43,6 +43,21 @@ public abstract class Piece {
 		return elements.get(0).getCoordonnees();
 	}
 	
+	public int getLargeur() {
+		int minX = getElements().get(0).getCoordonnees().getAbscisse();
+	    int maxX = getElements().get(0).getCoordonnees().getAbscisse();
+	    
+	    for (Element el : getElements()) {
+	        if (el.getCoordonnees().getAbscisse() < minX) {
+	            minX = el.getCoordonnees().getAbscisse();
+	        }
+	        if (el.getCoordonnees().getAbscisse() > maxX) {
+	            maxX = el.getCoordonnees().getAbscisse();
+	        }
+	    }
+	    return maxX - minX + 1;
+	}
+	
 	
 	//METHODES
 	protected abstract void setElements(Coordonnees coor, Couleur couleur); //signature

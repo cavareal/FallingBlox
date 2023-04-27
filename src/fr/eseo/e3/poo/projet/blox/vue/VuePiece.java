@@ -5,6 +5,7 @@ import java.awt.Graphics2D;
 import java.util.List;
 
 import fr.eseo.e3.poo.projet.blox.modele.Element;
+import fr.eseo.e3.poo.projet.blox.modele.Puits;
 import fr.eseo.e3.poo.projet.blox.modele.pieces.Piece;
 
 public class VuePiece {
@@ -42,6 +43,15 @@ public class VuePiece {
 		return new Color(r,g,b);
 	}
 	
+	public Color shadow(Color couleur) {
+		int r = couleur.getRed();
+		int g = couleur.getGreen();
+		int b = couleur.getBlue();
+		
+		return new Color(r,g,b, 128); // alpha compris entre 0 et 255 avec 0 très transparent et 255 complètement opaque (ici opacité divisé par 2)
+	
+	}
+	
 	public void afficherPiece(Graphics2D g2D) {
 		List<Element> elements = piece.getElements();
 				
@@ -61,4 +71,7 @@ public class VuePiece {
         }
         
     }
+	
+	
+
 }

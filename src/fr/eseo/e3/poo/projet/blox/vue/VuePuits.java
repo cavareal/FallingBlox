@@ -27,6 +27,7 @@ public class VuePuits extends JPanel implements PropertyChangeListener{
 	private PieceDeplacement pieceDeplacement;
 	private PieceRotation pieceRotation;
 	private final VueTas vueTas;
+	private VueOmbre vueOmbre;
 
 	public VuePuits(Puits puits){
 		setBackground(Color.WHITE);
@@ -42,6 +43,7 @@ public class VuePuits extends JPanel implements PropertyChangeListener{
 		this.addMouseListener(pieceRotation);
 		this.addMouseWheelListener(pieceDeplacement);
 		this.vueTas = new VueTas(this);
+		this.vueOmbre = null;
 		new Gravite(this);
 	}
 	
@@ -59,6 +61,7 @@ public class VuePuits extends JPanel implements PropertyChangeListener{
 		this.addMouseWheelListener(pieceDeplacement);
 		this.addMouseListener(pieceRotation);
 		this.vueTas = new VueTas(this);
+		this.vueOmbre = null;
 		new Gravite(this);
 	}
 
@@ -89,6 +92,10 @@ public class VuePuits extends JPanel implements PropertyChangeListener{
 		this.vuePiece = vuePiece;
 	}
 	
+	private void setVueOmbre(VueOmbre vueOmbre) {
+		this.vueOmbre = vueOmbre;
+	}
+	
 	public VueTas getVueTas() {
 		return this.vueTas;
 	}
@@ -112,6 +119,10 @@ public class VuePuits extends JPanel implements PropertyChangeListener{
 	    	vueTas.afficher(g2D);
 	    	this.repaint();
 	    }
+	    if(vueOmbre != null){
+	    	//vueOmbre.afficherOmbre(g2D);
+	    }
+	    this.repaint();
 	    this.setBackground(new Color(255,255,255));
 	    
 		g2D.dispose();
@@ -122,14 +133,10 @@ public class VuePuits extends JPanel implements PropertyChangeListener{
 		if (event.getPropertyName().equals(Puits.MODIFICATION_PIECE_ACTUELLE)) {
 			
 			setVuePiece(new VuePiece((Piece) event.getNewValue(), taille));
+			setVueOmbre(new VueOmbre((Piece) event.getNewValue(),puits, taille));
             this.repaint();
         } 
 		
-	}
-	
-	public void customRepaint() {
-		Element[][] elements = puits.getTas().getElements();
-		this.repaint();
 	}
 	
 	

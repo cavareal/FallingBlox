@@ -53,6 +53,7 @@ public class FallingBloxVersion2 implements Observateur{
 
 		JFrame frame = new JFrame("Falling Blox");
 		
+		DemarrageAffichage demarrageAffichage = new DemarrageAffichage();
 		JLabel label = new JLabel("Score :");
 		scoreLabel = new JLabel(String.valueOf(panneauInfo.getScore()));
 		frame.setLayout(new BorderLayout());

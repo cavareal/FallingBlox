@@ -42,7 +42,12 @@ public class TasTest {
         Tas tas = new Tas(puits);
         Piece piece = new OPiece(new Coordonnees(5,5),Couleur.ROUGE);
         List<Element> liste = new ArrayList<>(piece.getElements());
-        tas.ajouterElements(piece);
+        try {
+			tas.ajouterElements(piece);
+		} catch (BloxException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
         for (Element el : liste) {
             int x = el.getCoordonnees().getAbscisse();
             int y = el.getCoordonnees().getOrdonnee();

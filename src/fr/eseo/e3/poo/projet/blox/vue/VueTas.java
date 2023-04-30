@@ -64,7 +64,12 @@ public class VueTas {
 			// TODO Auto-generated catch block
 			//e.printStackTrace();
 		}*/
-		tas.supprimerLigne(tas.lignePleine());
+		try {
+			tas.supprimerLignes(tas.lignePleine());
+		}
+		catch(Exception e) {
+			System.out.println("toto");
+		}
 		vuePuits.repaint();
 	}
 	

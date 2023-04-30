@@ -12,7 +12,6 @@ public class Tas {
 	private Puits puits;
 	private int nombre = 0;
 	private boolean isSupprimerLigne;
-	private int ligneSupprimee;
 	private int score = 0;
     private List<Observateur> observateurs = new ArrayList<>();
 	
@@ -104,8 +103,9 @@ public class Tas {
 		}
 	}
 	
-	public int lignePleine() {
+	public ArrayList<Integer> lignePleine() {
 		int nbLigneSupp = 0;
+		ArrayList<Integer> indicesLignesSupprimees = new ArrayList<Integer>();
 		for(int j = 0; j < puits.getProfondeur(); j++) {
 			int compteur = 0;
 			for (int i =0; i < puits.getLargeur(); i++) {
@@ -116,39 +116,25 @@ public class Tas {
 				this.setScore(score += 10);
 				nbLigneSupp ++;
 				System.out.println(nbLigneSupp);
-				return j;
+				indicesLignesSupprimees.add(j);
 			}
 		}
-		return -1;
+		return indicesLignesSupprimees;
 	}
 	
-	public void supprimerLigne(int y) {
-		if(y != -1) {
+	public void supprimerLignes(ArrayList<Integer> indices) throws BloxException {
+		int indiceDecalage = 0; // quand on applique la gravité, les indices des lignes à supprimer ont un décalage
+		for(int y : indices) {
 			for(int i=0; i < puits.getLargeur(); i++) {
 				supprimerElement(i,y);
 				isSupprimerLigne = true;
-				ligneSupprimee = y;
-			}
+				tasGravite(y-indiceDecalage);
+				indiceDecalage--;
+			}	
 		}
 	}
 	
-	public void tasGravite() throws BloxException{
-		/*
-		// SUPPRIMER LES LIGNES PLEINES
-	    int nbLignesSupprimees = 0;
-	    for (int j = puits.getProfondeur() - 1; j >= 0; j--) {
-	        int compteur = 0;
-	        for (int i = 0; i < puits.getLargeur(); i++) {
-	            if (elements[j][i] == null) break;
-	            compteur++;
-	            this.setScore(score += 10);
-	        }
-	        if (compteur == puits.getLargeur()) {
-	            supprimerLignes(j);
-	            nbLignesSupprimees++;
-	            System.out.println(nbLignesSupprimees);
-	        }
-	    }*/
+	public void tasGravite(int ligneSupprimee) throws BloxException{
 	    // DEPLACEMENT DU TAS
 		if(isSupprimerLigne) {
 			for(int j = ligneSupprimee; j > 0; j--) { 

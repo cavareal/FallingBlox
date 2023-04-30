@@ -1,5 +1,10 @@
 package fr.eseo.e3.poo.projet.blox.controleur;
 
+import java.awt.FlowLayout;
+import java.awt.Frame;
+import java.awt.Label;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -13,7 +18,8 @@ import fr.eseo.e3.poo.projet.blox.vue.VuePuits;
 
 public class PieceDeplacement extends MouseAdapter implements MouseMotionListener, 
 															  MouseListener, 
-															  MouseWheelListener {
+															  MouseWheelListener,
+															  KeyListener {
 	private VuePuits vuePuits; 
 	private Puits puits; 
 	private boolean bEvt = true;
@@ -101,4 +107,67 @@ public class PieceDeplacement extends MouseAdapter implements MouseMotionListene
 			vuePuits.repaint();
 		}
 	}
+
+	@Override
+	public void keyTyped(KeyEvent e) {
+		// TODO Auto-generated method stub
+		// on fait rien 
+	}
+
+	@Override
+	public void keyPressed(KeyEvent e) {
+		int codeTouche = e.getKeyCode();
+	        switch (codeTouche) {
+	            case KeyEvent.VK_LEFT:
+	                // déplacer la pièce vers la gauche
+				try {
+					puits.getPieceActuelle().deplacerDe(-1, 0);
+				} catch (IllegalArgumentException e2) {
+					// TODO Auto-generated catch block
+				} catch (BloxException e2) {
+					// TODO Auto-generated catch block
+				}
+
+	                break;
+	            case KeyEvent.VK_RIGHT:
+				try {
+					puits.getPieceActuelle().deplacerDe(1, 0);
+				} catch (IllegalArgumentException e2) {
+					// TODO Auto-generated catch block
+				} catch (BloxException e2) {
+					// TODO Auto-generated catch block
+				}
+	                break;
+	            case KeyEvent.VK_DOWN:
+				try {
+					puits.getPieceActuelle().deplacerDe(0, 1);
+				} catch (IllegalArgumentException e2) {
+					// TODO Auto-generated catch block
+				} catch (BloxException e2) {
+					// TODO Auto-generated catch block
+				}
+	                break;
+	            case KeyEvent.VK_SPACE:
+				try {
+					puits.getPieceActuelle().tourner(true);
+				} catch (BloxException e2) {
+					// TODO Auto-generated catch block
+				}	
+					break;
+	            case KeyEvent.VK_ENTER:
+	            	puits.getPieceActuelle().descenteDirecte();
+	            	break;
+	            default:
+	                // ne rien faire pour les autres touches
+	                break;
+	        }
+	        vuePuits.repaint();
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+		// TODO Auto-generated method stub
+		// on fait rien
+	}
+	
 }

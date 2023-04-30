@@ -44,6 +44,14 @@ public class Gravite implements ActionListener{
 	public void setTimer(Timer timer) {
 		this.timer = timer;
 	}
+	
+	public void stopTimer() {
+	    timer.stop();
+	}
+
+	public void restartTimer() {
+	    timer.start();
+	}
 
 
 	public Puits getPuits() {

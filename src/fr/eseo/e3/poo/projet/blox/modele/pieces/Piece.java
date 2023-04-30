@@ -131,6 +131,19 @@ public abstract class Piece {
     	}
 	}
 	
+	public void descenteDirecte() {
+		boolean PieceNonStoppee = true;
+		
+		while(PieceNonStoppee) {
+			try {
+				deplacerDe(0,1);
+			} catch (IllegalArgumentException | BloxException e) {
+				// TODO Auto-generated catch block
+				PieceNonStoppee = false;
+			}
+		}
+	}
+	
 	private boolean collision(int newX, int newY) {
 		boolean bool = false;	
 		if(newY >= puits.getProfondeur()) {

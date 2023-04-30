@@ -3,6 +3,7 @@ package fr.eseo.e3.poo.projet.blox.vue;
 import java.awt.Color;
 import java.awt.Graphics2D;
 
+import fr.eseo.e3.poo.projet.blox.modele.BloxException;
 import fr.eseo.e3.poo.projet.blox.modele.Element;
 import fr.eseo.e3.poo.projet.blox.modele.Tas;
 
@@ -56,8 +57,15 @@ public class VueTas {
 				}
 			}
 		}
+		/*
+		try {
+			tas.tasGravite();
+		} catch (BloxException e) {
+			// TODO Auto-generated catch block
+			//e.printStackTrace();
+		}*/
+		tas.supprimerLigne(tas.lignePleine());
 		vuePuits.repaint();
-		tas.supprimerLignes(tas.lignePleine());
 	}
 	
 }

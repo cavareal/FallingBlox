@@ -48,7 +48,8 @@ public class VuePiece {
 		int g = couleur.getGreen();
 		int b = couleur.getBlue();
 		
-		return new Color(r,g,b, 128); // alpha compris entre 0 et 255 avec 0 très transparent et 255 complètement opaque (ici opacité divisé par 2)
+		return new Color(r,g,b, 128); 
+		// alpha compris entre 0 et 255 avec 0 très transparent et 255 complètement opaque (ici opacité divisé par 2)
 	
 	}
 	

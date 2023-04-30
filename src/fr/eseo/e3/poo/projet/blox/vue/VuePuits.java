@@ -12,7 +12,6 @@ import javax.swing.JPanel;
 import fr.eseo.e3.poo.projet.blox.controleur.Gravite;
 import fr.eseo.e3.poo.projet.blox.controleur.PieceDeplacement;
 import fr.eseo.e3.poo.projet.blox.controleur.PieceRotation;
-import fr.eseo.e3.poo.projet.blox.modele.Element;
 import fr.eseo.e3.poo.projet.blox.modele.Puits;
 import fr.eseo.e3.poo.projet.blox.modele.pieces.Piece;
 
@@ -28,6 +27,7 @@ public class VuePuits extends JPanel implements PropertyChangeListener{
 	private PieceRotation pieceRotation;
 	private final VueTas vueTas;
 	private VueOmbre vueOmbre;
+	private Gravite gravite;
 
 	public VuePuits(Puits puits){
 		setBackground(Color.WHITE);
@@ -42,9 +42,12 @@ public class VuePuits extends JPanel implements PropertyChangeListener{
 		this.addMouseListener(pieceDeplacement);
 		this.addMouseListener(pieceRotation);
 		this.addMouseWheelListener(pieceDeplacement);
+		this.addKeyListener(pieceDeplacement);
 		this.vueTas = new VueTas(this);
-		this.vueOmbre = null;
-		new Gravite(this);
+		//this.vueOmbre = null;
+		gravite = new Gravite(this);
+		this.setFocusable(true);
+		this.requestFocusInWindow();
 	}
 	
 	public VuePuits(Puits puits, int taille){
@@ -60,9 +63,10 @@ public class VuePuits extends JPanel implements PropertyChangeListener{
 		this.addMouseListener(pieceDeplacement);
 		this.addMouseWheelListener(pieceDeplacement);
 		this.addMouseListener(pieceRotation);
+		this.addKeyListener(pieceDeplacement);
 		this.vueTas = new VueTas(this);
-		this.vueOmbre = null;
-		new Gravite(this);
+		//this.vueOmbre = null;
+		gravite = new Gravite(this);
 	}
 
 	public Puits getPuits() {
@@ -84,6 +88,10 @@ public class VuePuits extends JPanel implements PropertyChangeListener{
 		
 	}
 	
+	public Gravite getGravite() {
+		return this.gravite;
+	}
+	
 	public VuePiece getVuePiece() {
 		return vuePiece;
 	}
@@ -103,15 +111,14 @@ public class VuePuits extends JPanel implements PropertyChangeListener{
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		Graphics2D g2D = (Graphics2D)g; //.create()
-	    //if(vueTas.getTas().getNombre() == 0) {
-	    	// Afficher une grille de couleur gris clair
-		    g2D.setColor(Color.LIGHT_GRAY);
-	    	for (int i = 0; i < puits.getProfondeur(); i++) {
-		        for (int j = 0; j < puits.getLargeur(); j++) {
-		            g2D.drawRect(j * this.taille, i * this.taille, this.taille, this.taille);
-		        }
-		    }
-	   // }
+
+	    g2D.setColor(Color.LIGHT_GRAY);
+    	for (int i = 0; i < puits.getProfondeur(); i++) {
+	        for (int j = 0; j < puits.getLargeur(); j++) {
+	            g2D.drawRect(j * this.taille, i * this.taille, this.taille, this.taille);
+	        }
+	    }
+
 	    if(vuePiece != null) {
 	    	vuePiece.afficherPiece(g2D);
 	    }
@@ -133,7 +140,7 @@ public class VuePuits extends JPanel implements PropertyChangeListener{
 		if (event.getPropertyName().equals(Puits.MODIFICATION_PIECE_ACTUELLE)) {
 			
 			setVuePiece(new VuePiece((Piece) event.getNewValue(), taille));
-			setVueOmbre(new VueOmbre((Piece) event.getNewValue(),puits, taille));
+			//setVueOmbre(new VueOmbre((Piece) event.getNewValue(),puits, taille));
             this.repaint();
         } 
 		

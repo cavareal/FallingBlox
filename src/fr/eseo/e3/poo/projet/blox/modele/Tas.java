@@ -105,6 +105,7 @@ public class Tas {
 	}
 	
 	public int lignePleine() {
+		int nbLigneSupp = 0;
 		for(int j = 0; j < puits.getProfondeur(); j++) {
 			int compteur = 0;
 			for (int i =0; i < puits.getLargeur(); i++) {
@@ -113,13 +114,15 @@ public class Tas {
 			}
 			if(compteur == puits.getLargeur()) {
 				this.setScore(score += 10);
+				nbLigneSupp ++;
+				System.out.println(nbLigneSupp);
 				return j;
 			}
 		}
 		return -1;
 	}
 	
-	public void supprimerLignes(int y) {
+	public void supprimerLigne(int y) {
 		if(y != -1) {
 			for(int i=0; i < puits.getLargeur(); i++) {
 				supprimerElement(i,y);
@@ -130,19 +133,35 @@ public class Tas {
 	}
 	
 	public void tasGravite() throws BloxException{
-		
+		/*
+		// SUPPRIMER LES LIGNES PLEINES
+	    int nbLignesSupprimees = 0;
+	    for (int j = puits.getProfondeur() - 1; j >= 0; j--) {
+	        int compteur = 0;
+	        for (int i = 0; i < puits.getLargeur(); i++) {
+	            if (elements[j][i] == null) break;
+	            compteur++;
+	            this.setScore(score += 10);
+	        }
+	        if (compteur == puits.getLargeur()) {
+	            supprimerLignes(j);
+	            nbLignesSupprimees++;
+	            System.out.println(nbLignesSupprimees);
+	        }
+	    }*/
+	    // DEPLACEMENT DU TAS
 		if(isSupprimerLigne) {
-			for(int j = ligneSupprimee; j > 0; j--) {
+			for(int j = ligneSupprimee; j > 0; j--) { 
 				for (int i =0; i < puits.getLargeur(); i++) {
 					elements[j][i]= elements[j-1][i];
 					if(elements[j-1][i] != null) {
-						//elements[j][i].deplacerDeCollision(0, 1, puits.getProfondeur());
 						elements[j][i].setCoordonnees(new Coordonnees(i, j));
 					}
 				}
 			}
 		}
 		isSupprimerLigne = false;
+
 	}
 	
     public void ajouterObservateur(Observateur observateur) {

@@ -132,14 +132,14 @@ public abstract class Piece {
 	}
 	
 	public void descenteDirecte() {
-		boolean PieceNonStoppee = true;
+		boolean pieceNonStoppee = true;
 		
-		while(PieceNonStoppee) {
+		while(pieceNonStoppee) {
 			try {
 				deplacerDe(0,1);
 			} catch (IllegalArgumentException | BloxException e) {
 				// TODO Auto-generated catch block
-				PieceNonStoppee = false;
+				pieceNonStoppee = false;
 			}
 		}
 	}

@@ -41,13 +41,11 @@ public class KeyListenerExample implements KeyListener
 	            	//newX += 1;
 	                break;
 	            case KeyEvent.VK_DOWN:
-	            	System.out.println("flèche du bas");
 	                 // déplacer la pièce vers le bas
 	            	//newY += 1;
 	                break;
 	            default:
 	                // ne rien faire pour les autres touches
-	            	System.out.println("autre touche");
 	                break;
 	        }
 	        // redessiner la pièce avec les nouvelles coordonnées

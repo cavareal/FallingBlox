@@ -3,7 +3,6 @@ package fr.eseo.e3.poo.projet.blox.vue;
 import java.awt.Color;
 import java.awt.Graphics2D;
 
-import fr.eseo.e3.poo.projet.blox.modele.BloxException;
 import fr.eseo.e3.poo.projet.blox.modele.Element;
 import fr.eseo.e3.poo.projet.blox.modele.Tas;
 
@@ -68,7 +67,6 @@ public class VueTas {
 			tas.supprimerLignes(tas.lignePleine());
 		}
 		catch(Exception e) {
-			System.out.println("toto");
 		}
 		vuePuits.repaint();
 	}

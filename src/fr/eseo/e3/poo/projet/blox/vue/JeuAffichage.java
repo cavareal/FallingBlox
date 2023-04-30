@@ -13,7 +13,6 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 
 import fr.eseo.e3.poo.projet.blox.modele.Observateur;
-import fr.eseo.e3.poo.projet.blox.modele.Puits;
 
 public class JeuAffichage extends JFrame implements Observateur,
 													ActionListener{
@@ -63,7 +62,7 @@ public class JeuAffichage extends JFrame implements Observateur,
 		});
 		menuRestart.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				vuePuits.getGravite().restartTimer();;
+				vuePuits.getGravite().restartTimer();
 			}
 		});
 

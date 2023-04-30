@@ -104,7 +104,6 @@ public class Tas {
 	}
 	
 	public ArrayList<Integer> lignePleine() {
-		int nbLigneSupp = 0;
 		ArrayList<Integer> indicesLignesSupprimees = new ArrayList<Integer>();
 		for(int j = 0; j < puits.getProfondeur(); j++) {
 			int compteur = 0;
@@ -114,8 +113,6 @@ public class Tas {
 			}
 			if(compteur == puits.getLargeur()) {
 				this.setScore(score += 10);
-				nbLigneSupp ++;
-				System.out.println(nbLigneSupp);
 				indicesLignesSupprimees.add(j);
 			}
 		}
@@ -123,14 +120,12 @@ public class Tas {
 	}
 	
 	public void supprimerLignes(ArrayList<Integer> indices) throws BloxException {
-		int indiceDecalage = 0; // quand on applique la gravité, les indices des lignes à supprimer ont un décalage
 		for(int y : indices) {
 			for(int i=0; i < puits.getLargeur(); i++) {
 				supprimerElement(i,y);
 				isSupprimerLigne = true;
-				tasGravite(y-indiceDecalage);
-				indiceDecalage--;
 			}	
+			tasGravite(y);
 		}
 	}
 	

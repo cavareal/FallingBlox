@@ -26,7 +26,6 @@ public class VueOmbre extends VuePiece {
 	    
 	    // Trouver la position la plus basse pour chaque colonne de la pièce
 	    int[] positionsPlusBasses = new int[getPiece().getLargeur()];
-	    System.out.println(getPiece().toString());
 
 
 	    for (int i = 0; i < positionsPlusBasses.length; i++) {

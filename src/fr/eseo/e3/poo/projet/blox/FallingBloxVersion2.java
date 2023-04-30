@@ -40,10 +40,10 @@ public class FallingBloxVersion2 implements Observateur{
 	    puits.setPieceSuivante(UsineDePiece.genererPiece());
 	    
 	    JeuAffichage jeuAffichage = new JeuAffichage(vuePuits, panneauInfo);
-	    DemarrageAffichage demarrageAffichage = new DemarrageAffichage(jeuAffichage);
+	    new DemarrageAffichage(jeuAffichage);
 	    
 
-	    GameOverAffichage goa = new GameOverAffichage(puits);
+	    new GameOverAffichage(puits);
 	}
 	
 	public void actualiser(int score) {

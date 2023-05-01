@@ -5,7 +5,6 @@ import java.awt.Graphics2D;
 import java.util.List;
 
 import fr.eseo.e3.poo.projet.blox.modele.Element;
-import fr.eseo.e3.poo.projet.blox.modele.Puits;
 import fr.eseo.e3.poo.projet.blox.modele.pieces.Piece;
 
 public class VuePiece {

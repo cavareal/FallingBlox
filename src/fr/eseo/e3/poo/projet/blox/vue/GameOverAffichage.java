@@ -35,6 +35,7 @@ public class GameOverAffichage extends JPanel implements PropertyChangeListener{
 	public void propertyChange(PropertyChangeEvent evt) {
 		if(puits.getIsGameOver()) {
 			ecranFinDePartie();
+			
 			System.exit(0); // arret du programme 
 		}
 		

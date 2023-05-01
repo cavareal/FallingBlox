@@ -3,6 +3,11 @@ package fr.eseo.e3.poo.projet.blox.vue;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 
 import javax.swing.BoxLayout;
 import javax.swing.JFrame;
@@ -24,6 +29,7 @@ public class JeuAffichage extends JFrame implements Observateur,
     
     private VuePuits vuePuits;
     private PanneauInformation panneauInfo;
+    private static int meilleurScore;
     
     public JeuAffichage(VuePuits vuePuits, PanneauInformation panneauInfo) {
         this.vuePuits = vuePuits;
@@ -36,10 +42,23 @@ public class JeuAffichage extends JFrame implements Observateur,
     	
     	//PANNEAU LATERAL 
         JLabel label = new JLabel("Score :");
+        JLabel labelMeilleurScore = new JLabel("Meilleur Score :");
         scoreLabel = new JLabel(String.valueOf(panneauInfo.getScore()));
         JPanel panel = new JPanel();
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader("meilleur_score.txt"));
+            String ligne = reader.readLine();
+            if(ligne != null) {
+            	meilleurScore = Integer.parseInt(ligne);
+            }
+            reader.close();
+        } catch (IOException e) {
+            // Si le fichier n'existe pas ou s'il y a une erreur de lecture, on utilise le score initial de 0
+        }
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
         panel.add(panneauInfo);
+        panel.add(labelMeilleurScore);
+        panel.add(new JLabel(String.valueOf(meilleurScore)));
         panel.add(label);
         panel.add(scoreLabel);
         
@@ -84,6 +103,18 @@ public class JeuAffichage extends JFrame implements Observateur,
     
     public static void majScoreLabel(int score) {
         scoreLabel.setText(Integer.toString(score));
+        if (score > meilleurScore) {
+            meilleurScore = score;
+            // Écriture de la nouvelle valeur du meilleur score dans le fichier
+            try {
+                BufferedWriter writer = new BufferedWriter(new FileWriter("meilleur_score.txt"));
+                writer.write(Integer.toString(meilleurScore));
+                writer.close();
+            } catch (IOException e) {
+                // Gestion de l'erreur d'écriture dans le fichier
+            }
+        }
+        
     }
 
 	@Override

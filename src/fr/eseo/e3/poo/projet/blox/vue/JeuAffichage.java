@@ -122,6 +122,9 @@ public class JeuAffichage extends JFrame implements Observateur,
 		// TODO Auto-generated method stub
 		
 	}
+	public VuePuits getVuePuits() {
+		return this.vuePuits;
+	}
 
 	
 }

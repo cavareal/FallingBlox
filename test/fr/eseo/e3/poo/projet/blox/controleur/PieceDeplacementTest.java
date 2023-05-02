@@ -37,18 +37,6 @@ public class PieceDeplacementTest {
         // Case where the newNumC > numColonne
 
     }
-    /*
-    @Test
-    void testNewNumCSUPnumColonne() {
-        int oldX = (int) Math.floor(evt.getX()/vuePuits.getTaille());
-        pieceDeplacement.newNumCSUPnumColonne();
-        assertEquals(oldX + 1, piece.getX());
-    }
     
-    @Test
-    void testNewNumINFnumColonne() {
-        int oldX = piece.getX();
-        pieceDeplacement.newNumINFnumColonne();
-        assertEquals(oldX - 1, piece.getX());
-    }*/
+
 }

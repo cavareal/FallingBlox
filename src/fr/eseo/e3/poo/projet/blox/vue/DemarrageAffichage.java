@@ -19,6 +19,9 @@ public class DemarrageAffichage extends JFrame implements ActionListener {
 	    ImageIcon imageIcon = new ImageIcon("Falling_Blox.jpg");
 	    JLabel label = new JLabel(imageIcon);
 	    
+	    //ON STOP LE TIMER 
+	    jeuAffichage.getVuePuits().getGravite().stopTimer();
+	    
 	    //MODIF DE LA FENETRE ACTUELLE 
 	    this.setTitle("Demarrage du jeu");
 	    getContentPane().add(label, BorderLayout.CENTER);	
@@ -32,6 +35,7 @@ public class DemarrageAffichage extends JFrame implements ActionListener {
 	    boutonJouer.addActionListener(new ActionListener() {
 	        @Override
 	        public void actionPerformed(ActionEvent e) {
+	        	jeuAffichage.getVuePuits().getGravite().restartTimer(); // on relance de timer 
 	            jeuAffichage.setVisible(true); // affiche la fenêtre de jeu
 	            dispose(); // ferme la fenêtre de démarrage
 	        }
